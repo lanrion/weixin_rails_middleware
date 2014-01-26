@@ -5,7 +5,7 @@ module WeixinRailsMiddleware
     attr_accessor :token_model, :token_column, :token_string, :engine_path
 
     def initialize
-      @engine_path  = '/weixin_rails'
+      @engine_path  = DEFAULT_ENGINE_PATH
       @token_column = DEFAULT_TOKEN_COLUMN_NAME
     end
 

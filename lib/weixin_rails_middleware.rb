@@ -2,11 +2,12 @@ require "weixin_rails_middleware/engine"
 require "weixin_rails_middleware/configuration"
 require "weixin_rails_middleware/message"
 require "weixin_rails_middleware/reply_message"
-require "weixin_rails_middleware/weixin_message_helper.rb"
+require "weixin_rails_middleware/weixin_message_helper"
 
 module WeixinRailsMiddleware
 
   DEFAULT_TOKEN_COLUMN_NAME = "wixin_token".freeze
+  DEFAULT_ENGINE_PATH       = "/weixin_rails".freeze
 
   class << self
 
