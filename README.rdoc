@@ -1,7 +1,0 @@
-= WeixinRailsMiddleware
-
-This project rocks and uses MIT-LICENSE.
-
-
-
-rails generate weixin_rails_middleware:install
