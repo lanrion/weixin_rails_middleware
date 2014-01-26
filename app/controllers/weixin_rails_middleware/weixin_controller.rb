@@ -11,7 +11,6 @@ module WeixinRailsMiddleware
     end
 
     def reply
-      render text: "reply message to weixin server"
     end
 
     protected

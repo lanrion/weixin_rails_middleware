@@ -86,34 +86,11 @@ module WeixinRailsMiddleware
     # take the weixin params
     def current_weixin_params
       @current_weixin_params = request.body.read
-      # for test
-       # %(
-       #  <xml>
-       #      <ToUserName><![CDATA[to]]></ToUserName>
-       #      <FromUserName><![CDATA[from]]></FromUserName>
-       #      <CreateTime>1360391199</CreateTime>
-       #      <MsgType><![CDATA[text]]></MsgType>
-       #      <Content><![CDATA[Hello2BizUser]]></Content>
-       #      <MsgId>5842835709471227904</MsgId>
-       #  </xml>
-       #  )
     end
 
     # return a message class with current_weixin_params
     def current_weixin_message
       @current_weixin_message = Message.factory(current_weixin_params)
-    end
-
-    def current_message_type
-      @message_type = current_weixin_message.MsgType
-    end
-
-    def current_message_sender
-      @message_sender = current_weixin_message.FromUserName
-    end
-
-    def current_message_receiver
-      @message_receiver = current_weixin_message.ToUserName
     end
 
   end

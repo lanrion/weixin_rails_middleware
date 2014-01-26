@@ -1,7 +1,10 @@
 WeixinRailsMiddleware::WeixinController.class_eval do
 
   def reply
-    case current_weixin_message.MsgType
+    # Get the current_message
+    current_message = current_weixin_message
+
+    case current_message.MsgType
     when 'text'
       # text message handler
       # render xml: reply_text_message("ToUserName", "FromUserName", "your Message")
@@ -19,7 +22,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     when 'video'
       # video message handler
     else
-      render xml: reply_text_message(current_weixin_message.ToUserName, current_weixin_message.FromUserName, 'Unknow message')
+      render xml: reply_text_message(current_message.ToUserName, current_message.FromUserName, 'Unknow message')
     end
   end
 end
