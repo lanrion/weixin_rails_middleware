@@ -1,12 +1,25 @@
 WeixinRailsMiddleware::WeixinController.class_eval do
 
   def reply
-    root          = Nokogiri::XML(request.body.read).root
-    @receiver     = root.xpath("ToUserName").children.text
-    @sender       = root.xpath("FromUserName").children.text
-    @send_time    = Time.at(root.xpath("CreateTime").text.to_i)
-    @keyword      = root.xpath("Content").children.text
-    @message_type = root.xpath("MsgType").children.text
-    @message_id   = root.xpath("MsgId").text.to_i
+    case current_weixin_message.MsgType
+    when 'text'
+      # text message handler
+      # render xml: reply_text_message("ToUserName", "FromUserName", "your Message")
+    when 'image'
+      # image message handler
+    when 'location'
+      # LBS 回复
+      # location message handler
+    when 'link'
+      # link message handler
+    when 'event'
+      # event messge handler
+    when 'voice'
+      # voice message handler
+    when 'video'
+      # video message handler
+    else
+      render xml: reply_text_message(current_weixin_message.ToUserName, current_weixin_message.FromUserName, 'Unknow message')
+    end
   end
 end
