@@ -36,3 +36,23 @@ This project rocks and uses MIT-LICENSE.
 
   And if you config `engine_path` in `config/initializers/weixin_rails_middleware.rb`
   It should be generate: `http://www.example.com/your_config_engine_path/weixin/"#{weixin_token}"`
+
+## How to test
+  Install `ngrok` and run with `ngrok 4000`, `4000` is your port that Rails Server needed
+
+  Then, it will generate like this:
+
+  ```
+  Tunnel Status                 online
+  Version                       1.6/1.5
+  Forwarding                    http://e0ede89.ngrok.com -> 127.0.0.1:4000
+  Forwarding                    https://e0ede89.ngrok.com -> 127.0.0.1:4000
+  Web Interface                 127.0.0.1:4040
+  # Conn                        67
+  Avg Conn Time                 839.50ms
+
+  ```
+
+  Yes, She is `http://e0ede89.ngrok.com`
+
+  神器！！
