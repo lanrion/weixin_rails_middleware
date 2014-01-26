@@ -85,12 +85,12 @@ module WeixinRailsMiddleware
 
     # take the weixin params
     def current_weixin_params
-      @current_weixin_params = request.body.read
+      request.body.read
     end
 
     # return a message class with current_weixin_params
     def current_weixin_message
-      @current_weixin_message = Message.factory(current_weixin_params)
+       Message.factory(current_weixin_params)
     end
 
   end

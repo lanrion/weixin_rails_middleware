@@ -1,8 +1,7 @@
 # -*- encoding : utf-8 -*-
-
-# ref: https://github.com/wolfg1969/rack-weixin
-
+# ref: https://github.com/wolfg1969/rack-weixin/lib/weixin/model.rb
 require 'roxml'
+
 module WeixinRailsMiddleware
 
   class ReplyMessage
@@ -24,7 +23,6 @@ module WeixinRailsMiddleware
     end
   end
 
-
   # <xml>
   # <ToUserName><![CDATA[toUser]]></ToUserName>
   # <FromUserName><![CDATA[fromUser]]></FromUserName>
@@ -35,7 +33,6 @@ module WeixinRailsMiddleware
 
   class TextReplyMessage < ReplyMessage
     xml_accessor :Content, :cdata => true
-
     def initialize
         super
         @MsgType = 'text'
@@ -44,7 +41,6 @@ module WeixinRailsMiddleware
 
   class Music
     include ROXML
-
     xml_accessor :Title, :cdata => true
     xml_accessor :Description, :cdata => true
     xml_accessor :MusicUrl, :cdata => true
@@ -67,7 +63,6 @@ module WeixinRailsMiddleware
 
   class MusicReplyMessage < ReplyMessage
     xml_accessor :Music, :as => Music
-
     def initialize
       super
       @MsgType = 'music'
@@ -76,7 +71,6 @@ module WeixinRailsMiddleware
 
   class Article
     include ROXML
-
     xml_accessor :Title, :cdata => true
     xml_accessor :Description, :cdata => true
     xml_accessor :PicUrl, :cdata => true
@@ -108,7 +102,6 @@ module WeixinRailsMiddleware
   class NewsReplyMessage < ReplyMessage
     xml_accessor :ArticleCount, :as => Integer
     xml_accessor :Articles, :as => [Article], :in => 'Articles', :from => 'item'
-
     def initialize
       super
       @MsgType = 'news'
@@ -136,7 +129,6 @@ module WeixinRailsMiddleware
 
   class VideoReplyMessage < ReplyMessage
     xml_accessor :Video, :as => Video
-
     def initialize
       super
       @MsgType = 'video'
@@ -159,7 +151,6 @@ module WeixinRailsMiddleware
 
   class VoiceReplyMessage < ReplyMessage
     xml_accessor :Voice, :as => Voice
-
     def initialize
       super
       @MsgType = 'voice'
@@ -183,7 +174,6 @@ module WeixinRailsMiddleware
 
   class ImageReplyMessage < ReplyMessage
     xml_accessor :Image, :as => Image
-
     def initialize
       super
       @MsgType = 'image'

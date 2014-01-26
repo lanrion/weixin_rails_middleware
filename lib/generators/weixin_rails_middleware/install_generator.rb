@@ -33,8 +33,3 @@ module WeixinRailsMiddleware
     end
   end
 end
-
-# rails generate weixin_rails_middleware:install
-
-
-

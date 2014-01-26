@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
-# ref: https://github.com/wolfg1969/rack-weixin
-
+# ref: https://github.com/wolfg1969/rack-weixin/lib/weixin/model.rb
 require 'roxml'
 require 'multi_xml'
 require 'ostruct'
@@ -137,7 +136,6 @@ module WeixinRailsMiddleware
       @source.Format
     end
   end
-
 
   # <xml>
   #   <ToUserName><![CDATA[toUser]]></ToUserName>
