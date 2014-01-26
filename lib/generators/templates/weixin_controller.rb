@@ -11,7 +11,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     when 'image'
       # image message handler
     when 'location'
-      # LBS 回复
       # location message handler
     when 'link'
       # link message handler
