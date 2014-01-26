@@ -3,7 +3,7 @@ require "weixin_rails_middleware/configuration"
 
 module WeixinRailsMiddleware
 
-  DEFAULT_TOKEN_COLUMN_NAME = "wixin_token"
+  DEFAULT_TOKEN_COLUMN_NAME = "wixin_token".freeze
 
   class << self
 
