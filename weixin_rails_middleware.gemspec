@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'railties', '>= 3.1'
   s.add_dependency 'nokogiri', '>= 1.6.1'
+  s.add_dependency 'decorators', '~> 1.0.3'
+
   s.add_runtime_dependency 'rails', '>= 3.1'
 
 end
