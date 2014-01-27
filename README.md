@@ -2,6 +2,9 @@
 
 This project rocks and uses MIT-LICENSE.
 
+https://rubygems.org/gems/weixin_rails_middleware
+
+Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
 ## Install
 
