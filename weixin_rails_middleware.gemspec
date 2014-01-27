@@ -7,8 +7,8 @@ require "weixin_rails_middleware/version"
 Gem::Specification.new do |s|
   s.name        = "weixin_rails_middleware"
   s.version     = WeixinRailsMiddleware::VERSION
-  s.authors     = ["DylanDeng"]
-  s.email       = ["dylan@beansmile.com"]
+  s.authors     = ["lanrion"]
+  s.email       = ["huaitao-deng@foxmail.com"]
   s.homepage    = "http://github.com/lanrion/weixin_rails_middleware"
   s.summary     = "weixin_rails_middleware for integration weixin"
   s.description = "weixin_rails_middleware for integration weixin develop"
