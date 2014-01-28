@@ -15,6 +15,6 @@ WeixinRailsMiddleware.configure do |config|
   # config.token_string = "token string"
 
   # router
-  config.engine_path = "/"
+  # config.engine_path = "/"
 
 end

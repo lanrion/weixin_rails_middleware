@@ -7,6 +7,7 @@ module WeixinRailsMiddleware
     def initialize
       @engine_path  = DEFAULT_ENGINE_PATH
       @token_column = DEFAULT_TOKEN_COLUMN_NAME
+      @engine_path  = "/"
     end
 
     def token_model_class
