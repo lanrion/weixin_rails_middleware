@@ -4,6 +4,9 @@ require 'roxml'
 require 'multi_xml'
 require 'ostruct'
 
+# multi_xml will use Nokogiri if it is available
+MultiXml.parser = :nokogiri
+
 module WeixinRailsMiddleware
 
   class Message

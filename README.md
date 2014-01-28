@@ -85,6 +85,9 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   神器！！
 
+## XML parser
+  We use `roxml` to generate XML and use `multi_xml` to parse `XML`, but we let them all use `nokogiri` plugin default.
+
 ## TODO
 
   * 添加微信自定义菜单
