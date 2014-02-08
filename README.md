@@ -85,6 +85,14 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   神器！！
 
+## Form Helper
+
+  Custom `weixin_token_field`
+
+  Usage: `f.weixin_token_field: weixin_token`
+
+  `weixin_token_field` default is `disabled`, if you don't want it, you can `f.weixin_token_field: weixin_token, disabled: nil`
+
 ## XML parser
   We use `roxml` to generate XML and use `multi_xml` to parse `XML`, but we let them all use `nokogiri` plugin default.
 
