@@ -91,6 +91,12 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   Usage: `f.weixin_token_field: weixin_token`
 
+## Auto generate weixin_token method
+  `WeiXinUniqueToken.generate(options={})`,`options` have `size` and `generator`
+  we use `SecureRandom` to generate weixin_token, so it includes `hex, base64, random_bytes, urlsafe_base64, random_number, uuid`, default is `:hex`
+
+  e.g. `WeiXinUniqueToken.generate(generator: "uuid")`
+
 ## XML parser
   We use `roxml` to generate XML and use `multi_xml` to parse `XML`, but we let them all use `nokogiri` plugin default.
 

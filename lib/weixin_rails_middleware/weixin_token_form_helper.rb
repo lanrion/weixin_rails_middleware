@@ -6,11 +6,15 @@ module ActionView
       class WeixinTokenField < TextField # :nodoc:
         def render
           # custom weixin_token value
-          # TODO: +value+ maybe use another gerenate way
-          @options = {value: @options.fetch("value") { value_before_type_cast(object) } || Time.now.to_i }.merge!(@options)
           @options["type"]="text"
+          @options = {value: generate_weixin_token }.merge!(@options)
           super
         end
+        private
+
+         def generate_weixin_token
+          @options.fetch("value"){value_before_type_cast(object)} || WeiXinUniqueToken.generate
+         end
       end
     end # end of Tags
 
