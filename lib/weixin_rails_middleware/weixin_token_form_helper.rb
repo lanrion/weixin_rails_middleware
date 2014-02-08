@@ -1,14 +1,13 @@
 # custom weixin_token_field
 # usage: +f.weixin_token_field: weixin_token+
-# default is +disabled+, if you don't want it, you can +f.weixin_token_field: weixin_token, disabled: nil+
 module ActionView
   module Helpers
     module Tags # :nodoc:
       class WeixinTokenField < TextField # :nodoc:
         def render
-          # custom weixin_token value, and disable
+          # custom weixin_token value
           # TODO: +value+ maybe use another gerenate way
-          @options = {value: Time.now.to_i, disabled: :disabled}.merge!(@options)
+          @options = {value: @options.fetch("value") { value_before_type_cast(object) } || Time.now.to_i }.merge!(@options)
           @options["type"]="text"
           super
         end
