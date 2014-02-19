@@ -1,10 +1,13 @@
 module WeixinRailsMiddleware
   module WeixinMessageHelper
 
-    def reply_text_message(from, to, content)
+    # e.g.
+    # reply_text_message(@weixin_message.ToUserName, @weixin_message.FromUserName, "Your Message: #{@weixin_message.Content}")
+    # Or reply_text_message("Your Message: #{@weixin_message.Content}")
+    def reply_text_message(from=nil, to=nil, content)
       message = TextReplyMessage.new
-      message.ToUserName   = to
-      message.FromUserName = from
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Content      = content
       message.to_xml
     end
@@ -19,10 +22,10 @@ module WeixinRailsMiddleware
     end
 
     # music = generate_music
-    def reply_music_message(from, to, music)
+    def reply_music_message(from=nil, to=nil, music)
       message = MusicReplyMessage.new
-      message.ToUserName   = to
-      message.FromUserName = from
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Music        = music
       message.to_xml
     end
@@ -37,10 +40,10 @@ module WeixinRailsMiddleware
     end
 
     # articles = [generate_article]
-    def reply_news_message(from, to, articles)
+    def reply_news_message(from=nil, to=nil, articles)
       message = NewsReplyMessage.new
-      message.ToUserName   = to
-      message.FromUserName = from
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Articles     = articles
       message.ArticleCount = articles.count
       message.to_xml
@@ -54,8 +57,10 @@ module WeixinRailsMiddleware
       vodeo
     end
 
-    def replay_video_message(video)
+    def replay_video_message(from=nil, to=nil, video)
       message = VideoReplyMessage.new
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Video = video
       message.to_xml
     end
@@ -66,8 +71,10 @@ module WeixinRailsMiddleware
       voice
     end
 
-    def reply_voice_message(voice)
+    def reply_voice_message(from=nil, to=nil, voice)
       message = VoiceReplyMessage.new
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Voice = voice
       message.to_xml
     end
@@ -78,19 +85,12 @@ module WeixinRailsMiddleware
       image
     end
 
-    def reply_imgage_message(image)
+    def reply_imgage_message(from=nil, to=nil, image)
       message = ImageReplyMessage.new
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
       message.Image = image
-    end
-
-    # take the weixin params
-    def current_weixin_params
-      request.body.read
-    end
-
-    # return a message class with current_weixin_params
-    def current_weixin_message
-       Message.factory(current_weixin_params)
+      message.to_xml
     end
 
   end
