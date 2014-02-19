@@ -1,27 +1,38 @@
 WeixinRailsMiddleware::WeixinController.class_eval do
 
+  # There are two instance: @weixin_message,
+  # @weixin_public_account(token_model instance if you setup, otherwise return nil)
   def reply
-    # Get the current_message
-    current_message = current_weixin_message
-
-    case current_message.MsgType
-    when 'text'
-      # text message handler
-      # render xml: reply_text_message("ToUserName", "FromUserName", "your Message")
-    when 'image'
-      # image message handler
-    when 'location'
-      # location message handler
-    when 'link'
-      # link message handler
-    when 'event'
-      # event messge handler
-    when 'voice'
-      # voice message handler
-    when 'video'
-      # video message handler
-    else
-      render xml: reply_text_message(current_message.ToUserName, current_message.FromUserName, 'Unknow message')
-    end
+    render xml: send("response_#{@weixin_message.MsgType}_message", {})
   end
+
+  private
+
+    def response_text_message(options={})
+
+    end
+
+    def response_location_message(options={})
+      # location message handler
+    end
+
+    def response_image_message(options={})
+      # image message handler
+    end
+
+    def response_link_message(options={})
+      # link message handler
+    end
+
+    def response_event_message(options={})
+      # event messge handler
+    end
+
+    def response_voice_message(options={})
+      # voice message handler
+    end
+
+    def response_video_message(options={})
+      # video message handler
+    end
 end

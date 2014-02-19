@@ -1,10 +1,10 @@
 module WeixinRailsMiddleware
   class WeixinController < ApplicationController
-
     include WeixinMessageHelper
 
     skip_before_filter :verify_authenticity_token
     before_action :check_weixin_params, only: [:index, :reply]
+    before_action :set_weixin_public_account, :set_weixin_message, only: :reply
 
     def index
       render text: params[:echostr]
@@ -57,6 +57,27 @@ module WeixinRailsMiddleware
         token_column = WeixinRailsMiddleware.config.token_column
         token_model_instance = token_model.where("#{token_column}" => current_weixin_token).first
         token_model_instance
+      end
+
+      # e.g. will generate +@weixin_public_account+
+      def set_weixin_public_account
+        return nil if WeixinRailsMiddleware.config.token_string.blank?
+        @weixin_public_account ||= token_model_instance
+      end
+
+      def set_weixin_message
+        # Get the current_message
+        @weixin_message ||= current_weixin_message
+      end
+
+      # take the weixin params
+      def current_weixin_params
+        request.body.read
+      end
+
+      # return a message class with current_weixin_params
+      def current_weixin_message
+        Message.factory(current_weixin_params)
       end
 
   end
