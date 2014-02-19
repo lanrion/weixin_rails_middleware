@@ -5,6 +5,7 @@ require "weixin_rails_middleware/reply_message"
 require "weixin_rails_middleware/weixin_message_helper"
 require "weixin_rails_middleware/weixin_token_form_helper"
 require "weixin_rails_middleware/unique_token_helper"
+require "weixin_rails_middleware/weixin_server_url"
 
 module WeixinRailsMiddleware
 
