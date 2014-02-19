@@ -9,11 +9,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   private
 
     def response_text_message(options={})
+      reply_text_message("Your Message: #{@weixin_message.Content}")
 
     end
 
     def response_location_message(options={})
-      # location message handler
+      reply_text_message("Your Location: #{@weixin_message.Location_X}, #{@weixin_message.Location_Y}")
     end
 
     def response_image_message(options={})
