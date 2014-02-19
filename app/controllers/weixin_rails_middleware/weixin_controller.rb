@@ -61,7 +61,7 @@ module WeixinRailsMiddleware
 
       # e.g. will generate +@weixin_public_account+
       def set_weixin_public_account
-        return nil if WeixinRailsMiddleware.config.token_string.blank?
+        return nil if WeixinRailsMiddleware.config.token_string.present?
         @weixin_public_account ||= token_model_instance
       end
 
