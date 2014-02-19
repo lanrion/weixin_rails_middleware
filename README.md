@@ -11,17 +11,17 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
   * 自动验证微信请求。
 
   * 无需拼接XML格式，只需要使用 `WeixinMessageHelper` 辅助方法，即可快速回复。
-    使用方法: ` render xml: reply_text_message(current_message.ToUserName, current_message.FromUserName, "Your Message: #{current_message.Content}") `
+    使用方法: ` render xml: reply_text_message("Your Message: #{current_message.Content}") `
 
   * 支持自定义token，适合一个用户使用。
 
   * 支持多用户token: 适合多用户注册网站，每个用户有不同的token，通过 `weixin_rails_middleware.rb` 配置好存储token的Model与字段名，即可。
 
-  * 文本回复: `reply_text_message(from, to, content)`。
+  * 文本回复: `reply_text_message(content)`。
 
-  * 音乐回复: `reply_music_message(from, to, music)`。
+  * 音乐回复: `reply_music_message(music)`, `generate_music(title, desc, music_url, hq_music_url)`。
 
-  * 图文回复: `reply_news_message(from, to, articles)`。
+  * 图文回复: `reply_news_message(articles)`, `generate_article(title, desc, pic_url, link_url)`。
 
   * 视频回复: `replay_video_message(video)`。
 
@@ -49,7 +49,8 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   Create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
 
-  Note: You need to overwrite the `reply` method.
+  Note: You need to overwrite the `reply` method. And there are two instance: `@weixin_message`,
+  `@weixin_public_account(token_model instance if you setup, otherwise return nil)`
 
   Other
 
@@ -103,4 +104,5 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 ## TODO
 
   * 添加微信自定义菜单
+  * 多媒体资料上传
 
