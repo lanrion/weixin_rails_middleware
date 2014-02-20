@@ -34,7 +34,7 @@ module WeixinRailsMiddleware
 
       def check_token_string
         true
-        if current_weixin_token != token_string
+        if weixin_token != token_string
           render text: "Forbidden", status: 403
           false
         end      
@@ -61,20 +61,16 @@ module WeixinRailsMiddleware
         end
       end
 
-      def current_weixin_token
-        @weixin_token = params[:weixin_token]
-      end
-
       def token_model_instance
         token_model  = WeixinRailsMiddleware.config.token_model_class
         token_column = WeixinRailsMiddleware.config.token_column
-        token_model_instance = token_model.where("#{token_column}" => current_weixin_token).first
+        token_model_instance = token_model.where("#{token_column}" => weixin_token).first
         token_model_instance
       end
 
       # e.g. will generate +@weixin_public_account+
       def set_weixin_public_account
-        return nil if WeixinRailsMiddleware.config.token_string.present?
+        return nil if token_string.present?
         @weixin_public_account ||= token_model_instance
       end
 
@@ -85,6 +81,7 @@ module WeixinRailsMiddleware
 
       # take the weixin params
       def current_weixin_params
+        puts request.body.read
         request.body.read
       end
 
