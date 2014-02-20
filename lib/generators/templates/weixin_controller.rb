@@ -10,7 +10,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
     def response_text_message(options={})
       reply_text_message("Your Message: #{@weixin_message.Content}")
-
     end
 
     def response_location_message(options={})
