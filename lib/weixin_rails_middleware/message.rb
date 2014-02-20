@@ -27,7 +27,7 @@ module WeixinRailsMiddleware
       @source.MsgId.to_i
     end
 
-    def Message.factory(xml)
+    def self.factory(xml)
       hash = MultiXml.parse(xml)['xml']
       case hash['MsgType']
       when 'text'
