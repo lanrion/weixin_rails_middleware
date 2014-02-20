@@ -106,3 +106,12 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
   * 添加微信自定义菜单
   * 多媒体资料上传
 
+## 如何贡献代码
+
+  * fork 到自己的github库，提交你的代码， 修改完之后，请同步更新到 weixin_rails_middlerware_example测试项目中。
+
+  * 测试的话，需要开启服务器与微信对接，这种情况，请结合 weixin_rails_middlerware_example
+  在Gemfile里修改 gem 'weixin_rails_middleware', path: "home/weixin_rails_middlerware", bundle install
+
+  如果有更好的Idea，可以推荐一下。
+
