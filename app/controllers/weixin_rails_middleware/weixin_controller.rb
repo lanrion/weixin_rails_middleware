@@ -65,7 +65,6 @@ module WeixinRailsMiddleware
         token_model  = WeixinRailsMiddleware.config.token_model_class
         token_column = WeixinRailsMiddleware.config.token_column
         token_model_instance = token_model.where("#{token_column}" => weixin_token).first
-        token_model_instance
       end
 
       # e.g. will generate +@weixin_public_account+
@@ -81,8 +80,7 @@ module WeixinRailsMiddleware
 
       # take the weixin params
       def current_weixin_params
-        puts request.body.read
-        request.body.read
+        @t ||= request.body.read
       end
 
       # return a message class with current_weixin_params
