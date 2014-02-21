@@ -1,8 +1,8 @@
 module WeixinRailsMiddleware
   class WeixinController < ApplicationController
-    include WeixinMessageHelper
+    include ReplyWeixinMessageHelper
 
-    skip_before_filter :verify_authenticity_token
+    skip_before_action :verify_authenticity_token
     before_action :check_weixin_params, only: [:index, :reply]
     before_action :set_weixin_public_account, :set_weixin_message, only: :reply
 
@@ -25,13 +25,13 @@ module WeixinRailsMiddleware
 
       # check the token from Weixin Service is exist in local store.
       def check_weixin_token_valid?
-        if WeixinRailsMiddleware.config.token_string.blank?
+        if token_string.blank?
           if token_model_instance.blank?
             render text: "Forbidden", status: 403
             return false
           end
         else
-          if current_weixin_token != WeixinRailsMiddleware.config.token_string
+          if current_weixin_token != token_string
             render text: "Forbidden", status: 403
             return false
           end
@@ -59,9 +59,10 @@ module WeixinRailsMiddleware
         token_model_instance
       end
 
+      ## Callback
       # e.g. will generate +@weixin_public_account+
       def set_weixin_public_account
-        return nil if WeixinRailsMiddleware.config.token_string.present?
+        return nil if token_string.present?
         @weixin_public_account ||= token_model_instance
       end
 
@@ -70,14 +71,13 @@ module WeixinRailsMiddleware
         @weixin_message ||= current_weixin_message
       end
 
-      # take the weixin params
-      def current_weixin_params
-        request.body.read
-      end
-
       # return a message class with current_weixin_params
       def current_weixin_message
-        Message.factory(current_weixin_params)
+        Message.factory(request.body.read)
+      end
+
+      def token_string
+        WeixinRailsMiddleware.config.token_string
       end
 
   end
