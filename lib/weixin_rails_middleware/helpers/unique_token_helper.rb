@@ -1,5 +1,5 @@
 module WeixinRailsMiddleware
-  module UniqueToken
+  module UniqueTokenHelper
     def self.generate(options = {})
       # SecureRandom: hex, base64, random_bytes, urlsafe_base64, random_number, uuid
       generator_method_type = options.delete(:generator).try(:to_sym) || :hex
@@ -14,4 +14,4 @@ module WeixinRailsMiddleware
   end
 end
 
-WeiXinUniqueToken = WeixinRailsMiddleware::UniqueToken
+WeiXinUniqueToken = WeixinRailsMiddleware::UniqueTokenHelper
