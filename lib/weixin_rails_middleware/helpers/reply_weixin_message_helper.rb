@@ -1,5 +1,5 @@
 module WeixinRailsMiddleware
-  module WeixinMessageHelper
+  module ReplyWeixinMessageHelper
 
     # e.g.
     # reply_text_message(@weixin_message.ToUserName, @weixin_message.FromUserName, "Your Message: #{@weixin_message.Content}")
