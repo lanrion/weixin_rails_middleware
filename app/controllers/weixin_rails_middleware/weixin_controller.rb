@@ -1,5 +1,5 @@
 module WeixinRailsMiddleware
-  class WeixinController < ApplicationController
+  class WeixinController < ActionController::Base
     include ReplyWeixinMessageHelper
 
     skip_before_action :verify_authenticity_token
