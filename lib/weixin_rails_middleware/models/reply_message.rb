@@ -9,10 +9,10 @@ module WeixinRailsMiddleware
     xml_name :xml
     #xml_convention :camelcase
 
-    xml_accessor :ToUserName, :cdata => true
+    xml_accessor :ToUserName, :cdata   => true
     xml_accessor :FromUserName, :cdata => true
-    xml_reader :CreateTime, :as => Integer
-    xml_reader :MsgType, :cdata => true
+    xml_reader   :CreateTime, :as => Integer
+    xml_reader   :MsgType, :cdata => true
 
     def initialize
       @CreateTime = Time.now.to_i
@@ -34,8 +34,8 @@ module WeixinRailsMiddleware
   class TextReplyMessage < ReplyMessage
     xml_accessor :Content, :cdata => true
     def initialize
-        super
-        @MsgType = 'text'
+      super
+      @MsgType = 'text'
     end
   end
 
@@ -43,7 +43,7 @@ module WeixinRailsMiddleware
     include ROXML
     xml_accessor :Title, :cdata => true
     xml_accessor :Description, :cdata => true
-    xml_accessor :MusicUrl, :cdata => true
+    xml_accessor :MusicUrl,   :cdata => true
     xml_accessor :HQMusicUrl, :cdata => true
   end
 
@@ -74,7 +74,7 @@ module WeixinRailsMiddleware
     xml_accessor :Title, :cdata => true
     xml_accessor :Description, :cdata => true
     xml_accessor :PicUrl, :cdata => true
-    xml_accessor :Url, :cdata => true
+    xml_accessor :Url,    :cdata => true
   end
 
   # <xml>

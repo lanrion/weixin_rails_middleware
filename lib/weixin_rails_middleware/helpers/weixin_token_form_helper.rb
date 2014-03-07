@@ -10,11 +10,12 @@ module ActionView
           @options = {value: generate_weixin_token }.merge!(@options)
           super
         end
+
         private
 
-         def generate_weixin_token
-          @options.fetch("value"){value_before_type_cast(object)} || WeiXinUniqueToken.generate
-         end
+          def generate_weixin_token
+            @options.fetch("value"){value_before_type_cast(object)} || WeiXinUniqueToken.generate
+          end
       end
     end # end of Tags
 
