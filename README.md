@@ -33,17 +33,26 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
 ## Install
 
-  In your `Gemfile`: `gem 'weixin_rails_middleware'`
+  ### bundle
 
-  And `bundle intall`
+    Add `weixin_rails_middleware` into your `Gemfile`:
 
-## Init weixin_rails_middleware
+    `gem 'weixin_rails_middleware'` will install the last version
 
-  `rails generate weixin_rails_middleware:install`
+    If you want to use `master`:
 
-  1, It will create `config/initializers/weixin_rails_middleware.rb`
+    `gem 'weixin_rails_middleware', git: "https://github.com/lanrion/weixin_rails_middleware.git"`
 
-  ```
+    And `bundle intall`
+
+
+  ### Init weixin_rails_middleware
+
+    `rails generate weixin_rails_middleware:install`
+
+    1, It will create `config/initializers/weixin_rails_middleware.rb`
+
+    ```
     ## NOTE:
     ## If you config all them, it will use `token_string` default
     ##
@@ -62,15 +71,15 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
     # Default is "/", and recommend you use default directly.
     # config.engine_path = "/"
 
-  ```
+    ```
 
-  2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
+    2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
 
-  Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return token_model instance if you setup "token_model", otherwise return nil)`
+    Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return token_model instance if you setup "token_model", otherwise return nil)`
 
-  3, Route
+    3, Route
 
-  Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
+    Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
 
 ## Helpers
 
