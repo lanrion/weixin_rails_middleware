@@ -33,53 +33,53 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
 ## Install
 
-  ### bundle
+### Bundle
 
-    Add `weixin_rails_middleware` into your `Gemfile`:
+  Add `weixin_rails_middleware` into your `Gemfile`:
 
-    `gem 'weixin_rails_middleware'` will install the last version
+  `gem 'weixin_rails_middleware'` will install the last version
 
-    If you want to use `master`:
+  If you want to use `master`:
 
-    `gem 'weixin_rails_middleware', git: "https://github.com/lanrion/weixin_rails_middleware.git"`
+  `gem 'weixin_rails_middleware', git: "https://github.com/lanrion/weixin_rails_middleware.git"`
 
-    And `bundle intall`
+  And `bundle intall`
 
 
-  ### Init weixin_rails_middleware
+### Init weixin_rails_middleware
 
-    `rails generate weixin_rails_middleware:install`
+  Run `rails generate weixin_rails_middleware:install`
 
-    1, It will create `config/initializers/weixin_rails_middleware.rb`
+  1, It will create `config/initializers/weixin_rails_middleware.rb`
 
-    ```
-    ## NOTE:
-    ## If you config all them, it will use `token_string` default
-    ##
-    # Th first configure is fit for your weixin public_account is saved in database.
-    # "token_model" and "token_column" must in the same table.
-    # "token_model" The class name that to save your public_account
-    # "token_column" You can config a column name Optional, but you must have a column `weixin_token` default.
-    # config.token_model  = ""
-    # config.token_column = "weixin_token"
+  ```
+  ## NOTE:
+  ## If you config all them, it will use `token_string` default
+  ##
+  # Th first configure is fit for your weixin public_account is saved in database.
+  # "token_model" and "token_column" must in the same table.
+  # "token_model" The class name that to save your public_account
+  # "token_column" You can config a column name Optional, but you must have a column `weixin_token` default.
+  # config.token_model  = ""
+  # config.token_column = "weixin_token"
 
-    # Or the other configure is fit for only one weixin public_account
-    # If you config `token_string`, so it will directly use it
-    # config.token_string = "token string"
+  # Or the other configure is fit for only one weixin public_account
+  # If you config `token_string`, so it will directly use it
+  # config.token_string = "token string"
 
-    # Router
-    # Default is "/", and recommend you use default directly.
-    # config.engine_path = "/"
+  # Router
+  # Default is "/", and recommend you use default directly.
+  # config.engine_path = "/"
 
-    ```
+  ```
 
-    2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
+  2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
 
-    Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return token_model instance if you setup "token_model", otherwise return nil)`
+  Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return token_model instance if you setup "token_model", otherwise return nil)`
 
-    3, Route
+  3, Route
 
-    Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
+  Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
 
 ## Helpers
 
