@@ -1,6 +1,7 @@
 module WeixinRailsMiddleware
   class WeixinController < ActionController::Base
     include ReplyWeixinMessageHelper
+    include ConfigurationHelpers
 
     skip_before_action :verify_authenticity_token
     before_action :check_weixin_params, only: [:index, :reply]
@@ -53,9 +54,7 @@ module WeixinRailsMiddleware
       end
 
       def token_model_instance
-        token_model  = WeixinRailsMiddleware.config.token_model_class
-        token_column = WeixinRailsMiddleware.config.token_column
-        token_model_instance = token_model.where("#{token_column}" => current_weixin_token).first
+        token_model_instance = token_model_class.where("#{token_column}" => current_weixin_token).first
         token_model_instance
       end
 
@@ -74,10 +73,6 @@ module WeixinRailsMiddleware
       # return a message class with current_weixin_params
       def current_weixin_message
         Message.factory(request.body.read)
-      end
-
-      def token_string
-        WeixinRailsMiddleware.config.token_string
       end
 
   end
