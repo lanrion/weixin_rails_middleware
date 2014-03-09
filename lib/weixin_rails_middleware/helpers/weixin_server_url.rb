@@ -4,12 +4,66 @@
 # a public url looks like: weixin_server_url
 module WeixinRailsMiddleware
   module WeixinServerUrl
-    extend ActiveSupport::Concern
 
-    included do
-      def weixin_server_url
-        "http test"
+    module Base
+
+      private
+
+        def weixin_server_url_with_public_account(public_account)
+          base_host_url + current_token(public_account)
+        end
+
+        def weixin_server_url_without_public_account
+          base_host_url + token_string
+        end
+
+        def current_token(public_account)
+          if public_account.blank?
+            token_string
+          else
+            public_account.try(token_column)
+          end
+        end
+
+        def base_host_url
+          host_url = request.base_url
+          if is_default_engine_path? # "/"
+            "#{host_url}/weixin/"
+          else
+            "#{host_url}/#{engine_path}/weixin/"
+          end
+        end
+    end
+
+    module ViewHelpers
+      extend ActiveSupport::Concern
+      include ConfigurationHelpers
+      include Base
+      included do
+        def weixin_server_url(public_account=nil)
+          raise "You need pass a public_account instance." if token_string.blank? && public_account.blank?
+          if public_account.present?
+            weixin_server_url_with_public_account(public_account)
+          else
+            weixin_server_url_without_public_account(public_account)
+          end
+        end
+      end
+
+    end
+
+    module InstanceMethods
+      extend ActiveSupport::Concern
+      include ConfigurationHelpers
+      include Base
+      included do
+        def weixin_server_url
+          # base_host_url + self.send(token_column)
+          warn "Hi, this method is Pending, please use view helper: +weixin_server_url+ :)"
+        end
       end
     end
   end
 end
+
+ActionView::Base.send :include, WeixinRailsMiddleware::WeixinServerUrl::ViewHelpers
