@@ -2,19 +2,21 @@
 WeixinRailsMiddleware.configure do |config|
 
   ## NOTE:
-  ## if you config all them, it will use `token_string` default
+  ## If you config all them, it will use `token_string` default
   ##
-  # Th FIRST configure
-  # if you config `token_model`, it will use it to find_by_weixin_token
-  # you must config a column name, `weixin_token` default
-  # config.token_model  = "" # ActiveRecord subclass or other ORM subclass
+  # Th first configure is fit for your weixin public_account is saved in database.
+  # +token_model+ and +token_column+ must in the same table.
+  # +token_model+ The class name that to save your public_account
+  # +token_column+ You can config a column name Optional, but you must have a column `weixin_token` default.
+  # config.token_model  = ""
   # config.token_column = "weixin_token"
 
-  # OR the SECOND configure
-  # if you config `token_string`, so it will directly use it
+  # Or the other configure is fit for only one weixin public_account
+  # If you config `token_string`, so it will directly use it
   # config.token_string = "token string"
 
-  # router
+  # Router
+  # Default is "/", and recommend you use default directly.
   # config.engine_path = "/"
 
 end
