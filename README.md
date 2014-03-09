@@ -58,13 +58,11 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
 ## Helpers
 
-  Please see detail in `weixin_message_helper.rb`
+  Please see detail in `reply_weixin_message_helper.rb`
 
 ## Weixin Server Api URl
-  Default: `http://www.example.com/weixin/"#{weixin_token}"`
-
-  And if you config `engine_path` in `config/initializers/weixin_rails_middleware.rb`
-  It should be generate: `http://www.example.com/your_config_engine_path/weixin/"#{weixin_token}"`
+  View helper `weixin_server_url(public_account=nil)`.
+  if you using `token_string` default, pass with nothing, so it is `weixin_server_url`.
 
 ## How to test
   Install `ngrok` and run with `ngrok 4000`, `4000` is your port that Rails Server needed
@@ -83,8 +81,6 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
   ```
 
   Yes, She is `http://e0ede89.ngrok.com`
-
-  神器！！
 
 ## Form Helper
 
