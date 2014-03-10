@@ -142,6 +142,6 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
   6. Test with [weixin_rails_middleware_example](https://github.com/lanrion/weixin_rails_middleware_example), and push your changes.
 
 ## Bugs and Feedback
-  If you discover any bugs, please describe it in the issues tracker, including Rails and InheritedResources versions.
+  If you discover any bugs, please describe it in the issues tracker, including Rails and weixin_rails_middleware versions.
 
   Or contact me <huatiaodeng@gmail.com>, <huaitao-deng@foxmail.com>, or in [Ruby China](http://ruby-china.org/) [ruby_sky](http://ruby-china.org/ruby_sky)
