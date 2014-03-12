@@ -2,7 +2,8 @@ module WeixinRailsMiddleware
   class Configuration
     # use 'token_model': if the token is saved in SomeModel, then find token by it
     # use 'token_string': if the token is a String, just use it,
-    attr_accessor :token_model, :token_column, :token_string, :engine_path
+    attr_accessor :token_model, :token_column, :engine_path
+    attr_accessor :token_string, :secret_string
 
     def initialize
       @engine_path  = DEFAULT_ENGINE_PATH
