@@ -147,3 +147,6 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
   If you discover any bugs, please describe it in the issues tracker, including Rails and weixin_rails_middleware versions.
 
   Or contact me <huatiaodeng@gmail.com>, <huaitao-deng@foxmail.com>, or in [Ruby China](http://ruby-china.org/) [ruby_sky](http://ruby-china.org/ruby_sky)
+
+## Recommended articles
+  * [浅析微信信息信息接收与信息回复](https://gist.github.com/lanrion/9479631)
