@@ -89,9 +89,8 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   Please see details in [reply_weixin_message_helper.rb](https://github.com/lanrion/weixin_rails_middleware/blob/master/lib/weixin_rails_middleware/helpers/reply_weixin_message_helper.rb)
 
-### Weixin server url view helper
-  It is `weixin_server_url(public_account=nil)`.
-  If you using `token_string` default, pass with nothing, so it is `weixin_server_url`.
+### Weixin server url
+  `weixin_engine.weixin_index_url(public_account.weixin_token)`
 
 ### Form helper
 
