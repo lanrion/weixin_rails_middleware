@@ -33,6 +33,12 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   * 地理位置回复: 自定义需求。
 
+  * 其他需要access_token的API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
+    * 获取用户管理信息
+    * 分组管理接口
+    * 自定义菜单
+    * 发送客服信息
+
 ## Install
 
 ### Bundle
