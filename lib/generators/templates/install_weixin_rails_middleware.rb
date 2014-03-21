@@ -16,7 +16,7 @@ WeixinRailsMiddleware.configure do |config|
   # using to weixin server url to validate the token can be trusted.
   # config.weixin_secret_key = '<%= SecureRandom.hex(12) %>'
 
-  # Router
+  ## Router configure ##
   # Default is "/", and recommend you use default directly.
   # config.engine_path = "/"
 
