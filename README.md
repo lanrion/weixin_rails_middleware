@@ -12,7 +12,7 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
   * 自动验证微信请求。
 
-  * 无需拼接XML格式，只需要使用 `WeixinMessageHelper` 辅助方法，即可快速回复。
+  * 无需拼接XML格式，只需要使用 `ReplyWeixinMessageHelper` 辅助方法，即可快速回复。
     使用方法: ` render xml: reply_text_message("Your Message: #{current_message.Content}") `
 
   * 支持自定义token，适合一个用户使用。
