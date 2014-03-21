@@ -14,6 +14,7 @@ WeixinRailsMiddleware.configure do |config|
   # Or the other configure is fit for only one weixin public_account
   # If you config `token_string`, so it will directly use it
   # config.token_string = "token string"
+  # config.token_string = "token string"
 
   # Router
   # Default is "/", and recommend you use default directly.

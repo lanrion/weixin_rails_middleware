@@ -5,14 +5,14 @@ module WeixinRailsMiddleware
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../../templates', __FILE__)
 
-      desc 'Creates a Dashing initializer for your application.'
+      desc 'Creates a WeixinRailsMiddleware initializer for your application.'
 
       def install
         route 'mount WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path'
       end
 
       def copy_initializer
-        template 'initializer.rb', 'config/initializers/weixin_rails_middleware.rb'
+        template 'install_weixin_rails_middleware.rb', 'config/initializers/weixin_rails_middleware.rb'
       end
 
       def configure_application
