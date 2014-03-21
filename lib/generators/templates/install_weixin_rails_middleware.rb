@@ -9,10 +9,12 @@ WeixinRailsMiddleware.configure do |config|
   # +token_model+ The class name that to save your public_account
   # config.token_model  = ""
 
+  ## Here configure is for you DON'T WANT TO SAVE your public account into database ##
   # Or the other configure is fit for only one weixin public_account
   # If you config `token_string`, so it will directly use it
-  # config.token_string = "token string"
-  # config.token_string = "token string"
+  # config.token_string = '<%= SecureRandom.hex(12) %>'
+  # using to weixin server url to validate the token can be trusted.
+  # config.weixin_secret_key = '<%= SecureRandom.hex(12) %>'
 
   # Router
   # Default is "/", and recommend you use default directly.
