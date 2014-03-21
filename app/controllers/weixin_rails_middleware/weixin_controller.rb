@@ -20,8 +20,8 @@ module WeixinRailsMiddleware
       ## Callback
       # e.g. will generate +@weixin_public_account+
       def set_weixin_public_account
-        return nil if token_string.present?
-        @weixin_public_account ||= token_model_instance
+        return nil if weixin_token_string.present?
+        @weixin_public_account ||= current_weixin_public_account
       end
 
       def set_weixin_message
