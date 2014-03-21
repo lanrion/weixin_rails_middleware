@@ -1,4 +1,19 @@
 module WeixinRailsMiddleware
+
+  class << self
+
+    attr_accessor :configuration
+
+    def config
+      self.configuration ||= Configuration.new
+    end
+
+    def configure
+      yield config if block_given?
+    end
+
+  end
+
   class Configuration
     # use 'token_model': if the token is saved in SomeModel, then find token by it
     # use 'token_string': if the token is a String, just use it,

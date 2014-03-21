@@ -12,19 +12,5 @@ module WeixinRailsMiddleware
   DEFAULT_TOKEN_COLUMN_NAME = "weixin_token".freeze
   DEFAULT_ENGINE_PATH       = "/".freeze
 
-  class << self
-
-    attr_accessor :configuration
-
-    def config
-      self.configuration ||= Configuration.new
-    end
-
-    def configure
-      yield config if block_given?
-    end
-
-  end
-
 end
 
