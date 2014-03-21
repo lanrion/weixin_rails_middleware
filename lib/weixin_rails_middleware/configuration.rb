@@ -15,13 +15,13 @@ module WeixinRailsMiddleware
   end
 
   class Configuration
-    # use 'token_model': if the token is saved in SomeModel, then find token by it
-    # use 'token_string': if the token is a String, just use it,
-    attr_accessor :token_model, :token_column, :token_string, :engine_path
+    # use 'public_account_class': if the token is saved in SomeModel, then find token by it
+    # use 'weixin_token': if the token is a String, just use it,
+    attr_accessor :public_account_class, :weixin_token_string, :weixin_secret_string
+    attr_accessor :engine_path
 
     def initialize
-      @engine_path  = DEFAULT_ENGINE_PATH
-      @token_column = DEFAULT_TOKEN_COLUMN_NAME
+      @engine_path = DEFAULT_ENGINE_PATH
     end
 
   end
@@ -33,16 +33,16 @@ module WeixinRailsMiddleware
       @engine_path ||= WeixinRailsMiddleware.config.engine_path
     end
 
-    def token_string
-      @token_string ||= WeixinRailsMiddleware.config.token_string.to_s
-    end
-
-    def token_column
-      @token_column ||= WeixinRailsMiddleware.config.token_column
+    def weixin_token_string
+      @weixin_token_string ||= WeixinRailsMiddleware.config.weixin_token_string.to_s
     end
 
     def token_model
-      @token_model ||= WeixinRailsMiddleware.config.token_model
+      @public_account_class ||= WeixinRailsMiddleware.config.public_account_class
+    end
+
+    def weixin_secret_string
+      @weixin_secret_string ||= WeixinRailsMiddleware.config.weixin_secret_string.to_s
     end
 
     def is_default_engine_path?
@@ -51,9 +51,9 @@ module WeixinRailsMiddleware
 
     def token_model_class
       if token_model.blank?
-        raise "You need to config `token_model` in 'config/initializers/weixin_rails_middleware.rb'"
+        raise "You need to config `public_account_class` in 'config/initializers/weixin_rails_middleware.rb'"
       end
-      @token_model_c ||= token_model.constantize
+      @token_model_class_name ||= token_model.constantize
     end
   end
 end
