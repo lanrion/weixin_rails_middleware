@@ -89,7 +89,7 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
 
       # 优先为 click 类型
       def type
-        keyword.present? ? CLICK_TYPE : VIEW_TYPE
+        key.present? ? CLICK_TYPE : VIEW_TYPE
       end
 
       def button_type(jbuilder)
