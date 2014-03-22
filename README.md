@@ -10,6 +10,8 @@ https://rubygems.org/gems/weixin_rails_middleware
 
 Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
+Rails 3 Example: https://github.com/lanrion/weixin_rails_3
+
 > If you want to develop weixin mobile app, I recommend [twitter_ratchet_rails](https://github.com/lanrion/twitter_ratchet_rails).
 
 ## Functions
