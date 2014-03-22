@@ -3,7 +3,6 @@ require "weixin_rails_middleware/engine"
 require "weixin_rails_middleware/models/message"
 require "weixin_rails_middleware/models/reply_message"
 require "weixin_rails_middleware/helpers/reply_weixin_message_helper"
-require "weixin_rails_middleware/helpers/weixin_token_form_helper"
 require "weixin_rails_middleware/helpers/unique_token_helper"
 require "weixin_rails_middleware/helpers/weixin_authorize_helper"
 
