@@ -13,7 +13,6 @@ module WeixinRailsMiddleware
 
       def token_model_callback
         token_model_class.class_eval do
-          validates :weixin_secret_key, :weixin_token, presence: true, uniqueness: true
           before_create do
             # TODO: refactor
             self.weixin_secret_key = WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) if weixin_secret_key.blank?
