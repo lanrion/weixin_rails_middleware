@@ -4,9 +4,9 @@ module WeixinRailsMiddleware
     include ConfigurationHelpers
     include WeixinAuthorizeHelper
 
-    skip_before_action :verify_authenticity_token
-    before_action :check_weixin_params, only: [:index, :reply]
-    before_action :set_weixin_public_account, :set_weixin_message, only: :reply
+    skip_before_filter :verify_authenticity_token
+    before_filter :check_weixin_params, only: [:index, :reply]
+    before_filter :set_weixin_public_account, :set_weixin_message, only: :reply
 
     def index
       render text: params[:echostr]
