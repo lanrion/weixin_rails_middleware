@@ -45,6 +45,109 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
     * 自定义菜单
     * 发送客服信息
 
+  * 自定义菜单的实现
+
+    * 数据库设计:
+
+    ```ruby
+    class CreateDiymenus < ActiveRecord::Migration
+      def change
+        create_table :diymenus do |t|
+          t.integer :public_account_id
+          t.integer :parent_id
+          t.string :name
+          t.string :key
+          t.boolean :is_show
+          t.string :url
+
+          t.timestamps
+        end
+        add_index :diymenus, :public_account_id
+        add_index :diymenus, :parent_id
+        add_index :diymenus, :key
+
+      end
+    end
+
+    ```
+
+    * Diymenu model 层设计
+
+    ```ruby
+    class Diymenu < ActiveRecord::Base
+
+      CLICK_TYPE = "click" # key
+      VIEW_TYPE  = "view"  # url
+
+      belongs_to :public_account
+
+      has_many :sub_menus, ->{where(is_show: true).limit(5)}, class_name: "Diymenu", foreign_key: :parent_id
+
+      def has_sub_menu?
+        sub_menus.present?
+      end
+
+      # 优先为 click 类型
+      def type
+        keyword.present? ? CLICK_TYPE : VIEW_TYPE
+      end
+
+      def button_type(jbuilder)
+        is_view_type? ? (jbuilder.url url) : (jbuilder.key key)
+      end
+
+      def is_view_type?
+        type == VIEW_TYPE
+      end
+    end
+
+    ```
+
+    * PublicAccount Model 设计
+
+    ```ruby
+    class PublicAccount < ActiveRecord::Base
+
+    # 自定义菜单
+    has_many :diymenus, dependent: :destroy
+
+    has_many :parent_menus, ->{includes(:sub_menus).where(parent_id: nil, is_show: true).limit(3)}, class_name: "Diymenu", foreign_key: :public_account_id
+
+      def build_menu
+        Jbuilder.encode do |json|
+          json.button (parent_menus) do |menu|
+            json.name menu.name
+            if menu.sub_menus.present?
+              json.sub_button(menu.sub_menus) do |sub_menu|
+                json.type sub_menu.type
+                json.name sub_menu.name
+                sub_menu.button_type(json)
+              end
+            else
+              json.type menu.type
+              menu.button_type(json)
+            end
+          end
+        end
+      end
+    end
+
+    ```
+
+    * Action层的用法
+
+    ```ruby
+    # 结合: https://github.com/lanrion/weixin_authorize(建议选用此gem的Redis存access_token方案)
+    def generate_menu
+      weixin_client ||= WeixinAuthorize::Client.new(@current_public_account.app_key, @current_public_account.app_secret)
+      menu   = @current_public_account.build_menu
+      result = weixin_client.create_menu(menu)
+      set_error_message(result["errmsg"]) if result["errcode"] != 0
+      redirect_to public_account_diymenus_path(@current_public_account)
+    end
+
+    ```
+
 ## Install
 
 ### Bundle
