@@ -16,7 +16,7 @@ module WeixinRailsMiddleware
           validates :weixin_secret_key, :weixin_token, presence: true, uniqueness: true
           before_create do
             # TODO: refactor
-            self.weixin_secret_key = WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24)
+            self.weixin_secret_key = WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) if weixin_secret_key.blank?
             self.weixin_token = WeiXinUniqueToken.generate if weixin_token.blank?
           end
         end
