@@ -131,12 +131,6 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 ### Weixin server url, pass `weixin_secret_key` param
   `weixin_engine.weixin_index_url(public_account.weixin_secret_key)`
 
-### Form helper, just only Rails 4, not support Rails 3
-
-  Provide `weixin_token_field`
-
-  Usage: `f.weixin_token_field: weixin_token`
-
 ### Auto generate weixin_token method
 
   If you don't want to use form helper `weixin_token_field`, so we provide: `WeiXinUniqueToken.generate(options={})`.
