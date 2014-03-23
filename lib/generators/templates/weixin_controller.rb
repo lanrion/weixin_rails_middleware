@@ -4,6 +4,7 @@
 # 2: public_account_class instance if you setup, otherwise return nil
 # @weixin_public_account
 WeixinRailsMiddleware::WeixinController.class_eval do
+  before_filter :set_keyword, only: :reply
 
   # There are two instance: @weixin_message,
   # @weixin_public_account(token_model instance if you setup, otherwise return nil)
@@ -39,5 +40,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
     def response_video_message(options={})
       # video message handler
+    end
+    def set_keyword
+      @keyword = @weixin_message.Content    || # 文本消息
+                 @weixin_message.EventKey   || # 事件推送
+                 @weixin_message.Recognition # 接收语音识别结果
     end
 end
