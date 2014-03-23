@@ -5,35 +5,34 @@ module WeixinRailsMiddleware
     protected
 
       def check_weixin_params
-        if is_weixin_secret_key_valid? && is_signature_invalid?
-          render text: "Forbidden", status: 403
-        end
+        check_weixin_secret_key_valid
+        check_signature_valid
       end
 
       # check the token from Weixin Service is exist in local store.
-      def is_weixin_secret_key_valid?
+      def check_weixin_secret_key_valid
         if weixin_token_string.blank?
           if current_weixin_public_account.blank?
-            render text: "Forbidden", status: 403
+            render text: "RecordNotFound - Couldn't find #{token_model} with weixin_secret_key=#{current_weixin_secret_key} ", status: 404
             return false
           end
         else
           if current_weixin_secret_key != weixin_secret_string
-            render text: "Forbidden", status: 403
+            render text: "WeixinSecretStringNotMatch", status: 403
             return false
           end
         end
         true
       end
 
-      def is_signature_invalid?
+      def check_signature_valid
         signature   = params[:signature] || ''
         timestamp   = params[:timestamp] || ''
         nonce       = params[:nonce]     || ''
         sort_params = [current_weixin_token, timestamp, nonce].sort.join
         current_signature = Digest::SHA1.hexdigest(sort_params)
-        return true if current_signature != signature
-        false
+        return true if current_signature == signature
+        render text: "WeixinSignatureNotMatch", status: 403
       end
 
       def current_weixin_secret_key
