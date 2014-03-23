@@ -16,34 +16,84 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       reply_text_message("Your Message: #{@weixin_message.Content}")
     end
 
+    # <Location_X>23.134521</Location_X>
+    # <Location_Y>113.358803</Location_Y>
+    # <Scale>20</Scale>
+    # <Label><![CDATA[位置信息]]></Label>
     def response_location_message(options={})
-      reply_text_message("Your Location: #{@weixin_message.Location_X}, #{@weixin_message.Location_Y}")
+      @lx    = @weixin_message.Location_X
+      @ly    = @weixin_message.Location_Y
+      @scale = @weixin_message.Scale
+      @label = @weixin_message.Label
+      reply_text_message("Your Location: #{@lx}, #{@ly}, #{@scale}, #{@label}")
     end
 
+    # <PicUrl><![CDATA[this is a url]]></PicUrl>
+    # <MediaId><![CDATA[media_id]]></MediaId>
     def response_image_message(options={})
-      # image message handler
+      @pic_url  = @current_message.PicUrl
+      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
     end
 
+    # <Title><![CDATA[公众平台官网链接]]></Title>
+    # <Description><![CDATA[公众平台官网链接]]></Description>
+    # <Url><![CDATA[url]]></Url>
     def response_link_message(options={})
+      @title = @current_message.Title
+      @desc  = @current_message.Description
+      @url   = @current_message.Url
       # link message handler
     end
 
     def response_event_message(options={})
-      # event messge handler
+      event_type = @current_message.Event
+      case event_type
+      when "subscribe"   # 关注公众账号
+        if @keyword.present?
+          # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
+          # handle event
+        end
+        # handle event
+
+      when "unsubscribe" # 取消关注
+        # handle event
+      when "SCAN"        # 扫描带参数二维码事件: 2用户已关注时的事件推送
+        # handle event
+      when "LOCATION"    # 上报地理位置事件
+        # handle event
+      when "CLICK"       # 点击菜单拉取消息时的事件推送
+        # handle event
+      when "VIEW"        # 点击菜单跳转链接时的事件推送
+        # handle event
+      else
+        # handle unrecognized event
+      end
+
     end
 
+    # <MediaId><![CDATA[media_id]]></MediaId>
+    # <Format><![CDATA[Format]]></Format>
     def response_voice_message(options={})
+      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      @format   = @current_message.format
       # voice message handler
     end
 
+    # <MediaId><![CDATA[media_id]]></MediaId>
+    # <ThumbMediaId><![CDATA[thumb_media_id]]></ThumbMediaId>
     def response_video_message(options={})
+      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      # 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
+      @thumb_media_id = @current_message.ThumbMediaId
       # video message handler
     end
+
     def set_keyword
       @keyword = @weixin_message.Content    || # 文本消息
                  @weixin_message.EventKey   || # 事件推送
                  @weixin_message.Recognition # 接收语音识别结果
     end
+
     # http://apidock.com/rails/ActionController/Base/default_url_options
     def default_url_options(options={})
       { weichat_id: @weixin_message.FromUserName }
