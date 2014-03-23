@@ -1,5 +1,7 @@
 # WeixinRailsMiddleware
 
+[![Gem Version](https://badge.fury.io/rb/weixin_rails_middleware.png)](http://badge.fury.io/rb/weixin_rails_middleware)
+
 This project rocks and uses MIT-LICENSE.
 
 PLEASE DO NOT USE MASTER !! It still developing and unstable!
