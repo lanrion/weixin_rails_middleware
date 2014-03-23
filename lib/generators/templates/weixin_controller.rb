@@ -44,4 +44,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
                  @weixin_message.EventKey   || # 事件推送
                  @weixin_message.Recognition # 接收语音识别结果
     end
+    # http://apidock.com/rails/ActionController/Base/default_url_options
+    def default_url_options(options={})
+      { weichat_id: @weixin_message.FromUserName }
+    end
 end
