@@ -1,3 +1,8 @@
+# encoding: utf-8
+# 1: get weixin xml params
+# @weixin_message
+# 2: public_account_class instance if you setup, otherwise return nil
+# @weixin_public_account
 WeixinRailsMiddleware::WeixinController.class_eval do
 
   # There are two instance: @weixin_message,
