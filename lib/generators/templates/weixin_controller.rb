@@ -6,8 +6,6 @@
 WeixinRailsMiddleware::WeixinController.class_eval do
   before_filter :set_keyword, only: :reply
 
-  # There are two instance: @weixin_message,
-  # @weixin_public_account(token_model instance if you setup, otherwise return nil)
   def reply
     render xml: send("response_#{@weixin_message.MsgType}_message", {})
   end
