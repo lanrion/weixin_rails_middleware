@@ -4,8 +4,6 @@
 
 This project rocks and uses MIT-LICENSE.
 
-PLEASE DO NOT USE MASTER !! It still developing and unstable!
-
 Note: `master` has already supported to Rails 3, Rails 4
 
 https://rubygems.org/gems/weixin_rails_middleware
