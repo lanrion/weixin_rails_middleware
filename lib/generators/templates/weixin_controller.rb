@@ -13,7 +13,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   private
 
     def response_text_message(options={})
-      reply_text_message("Your Message: #{@weixin_message.Content}")
+      reply_text_message("Your Message: #{@keyword}")
     end
 
     # <Location_X>23.134521</Location_X>
@@ -31,42 +31,45 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # <PicUrl><![CDATA[this is a url]]></PicUrl>
     # <MediaId><![CDATA[media_id]]></MediaId>
     def response_image_message(options={})
-      @pic_url  = @current_message.PicUrl
-      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      @pic_url  = @weixin_message.PicUrl
+      @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      reply_text_message("回复图片信息")
     end
 
     # <Title><![CDATA[公众平台官网链接]]></Title>
     # <Description><![CDATA[公众平台官网链接]]></Description>
     # <Url><![CDATA[url]]></Url>
     def response_link_message(options={})
-      @title = @current_message.Title
-      @desc  = @current_message.Description
-      @url   = @current_message.Url
-      # link message handler
+      @title = @weixin_message.Title
+      @desc  = @weixin_message.Description
+      @url   = @weixin_message.Url
+      reply_text_message("回复链接信息")
     end
 
     def response_event_message(options={})
-      event_type = @current_message.Event
+      event_type = @weixin_message.Event
       case event_type
       when "subscribe"   # 关注公众账号
         if @keyword.present?
           # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
-          # handle event
+          reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
         end
-        # handle event
-
+        reply_text_message("关注公众账号")
       when "unsubscribe" # 取消关注
-        # handle event
+        reply_text_message("取消关注")
       when "SCAN"        # 扫描带参数二维码事件: 2用户已关注时的事件推送
-        # handle event
+        reply_text_message("扫描带参数二维码事件: 2用户已关注时的事件推送, keyword: #{@keyword}")
       when "LOCATION"    # 上报地理位置事件
-        # handle event
+        @lat = @weixin_message.Latitude
+        @lgt = @weixin_message.Longitude
+        @precision = @weixin_message.Precision
+        reply_text_message("Your Location: #{@lat}, #{@lgt}, #{@precision}")
       when "CLICK"       # 点击菜单拉取消息时的事件推送
-        # handle event
+        reply_text_message("你点击了: #{@keyword}")
       when "VIEW"        # 点击菜单跳转链接时的事件推送
-        # handle event
+        reply_text_message("你点击了: #{@keyword}")
       else
-        # handle unrecognized event
+        reply_text_message("处理无法识别的事件")
       end
 
     end
@@ -74,18 +77,18 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # <MediaId><![CDATA[media_id]]></MediaId>
     # <Format><![CDATA[Format]]></Format>
     def response_voice_message(options={})
-      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
-      @format   = @current_message.format
-      # voice message handler
+      @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      @format   = @weixin_message.format
+      reply_text_message("回复语音信息: #{@keyword}")
     end
 
     # <MediaId><![CDATA[media_id]]></MediaId>
     # <ThumbMediaId><![CDATA[thumb_media_id]]></ThumbMediaId>
     def response_video_message(options={})
-      @media_id = @current_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
+      @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
       # 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
-      @thumb_media_id = @current_message.ThumbMediaId
-      # video message handler
+      @thumb_media_id = @weixin_message.ThumbMediaId
+      reply_text_message("回复视频信息")
     end
 
     def set_keyword
