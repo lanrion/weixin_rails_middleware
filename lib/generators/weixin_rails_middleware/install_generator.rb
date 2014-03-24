@@ -8,7 +8,7 @@ module WeixinRailsMiddleware
       desc 'Creates a WeixinRailsMiddleware initializer for your application.'
 
       def install
-        route 'mount WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path'
+        route 'mount WeixinRailsMiddleware::Engine, at: "/"'
       end
 
       def copy_initializer
