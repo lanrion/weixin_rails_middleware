@@ -53,10 +53,6 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
   # using to weixin server url to validate the token can be trusted.
   # config.weixin_secret_string = '<%= WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) %>'
 
-  ## Router configure ##
-  # Default is "/", and recommend you use default directly.
-  # config.engine_path = "/"
-
   ```
 
   2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
@@ -65,7 +61,7 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
 
   3, Route
 
-  Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
+  Add a line: `WeixinRailsMiddleware::Engine, at: "/"` in `routes.rb`
 
   * If you save your public_account into database, you should do follow step:
 
