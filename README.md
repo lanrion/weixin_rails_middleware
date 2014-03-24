@@ -12,7 +12,89 @@ Example:　https://github.com/lanrion/weixin_rails_middleware_example
 
 Rails 3 Example: https://github.com/lanrion/weixin_rails_3
 
+高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
+
 > If you want to develop weixin mobile app, I recommend [twitter_ratchet_rails](https://github.com/lanrion/twitter_ratchet_rails).
+
+
+## Install
+
+### Bundle
+
+  Add `weixin_rails_middleware` into your `Gemfile`:
+
+  `gem 'weixin_rails_middleware'` will install the last version
+
+  If you want to use `master`:
+
+  `gem 'weixin_rails_middleware', git: "https://github.com/lanrion/weixin_rails_middleware.git"`
+
+  And `bundle intall`
+
+### Init weixin_rails_middleware
+
+  * Run `rails generate weixin_rails_middleware:install`
+
+  1, It will create `config/initializers/weixin_rails_middleware.rb`
+
+  ```ruby
+  ## NOTE:
+  ## If you config all them, it will use `weixin_token_string` default
+
+  ## Config public_account_class if you SAVE public_account into database ##
+  # Th first configure is fit for your weixin public_account is saved in database.
+  # +public_account_class+ The class name that to save your public_account
+  # config.public_account_class = ""
+
+  ## Here configure is for you DON'T WANT TO SAVE your public account into database ##
+  # Or the other configure is fit for only one weixin public_account
+  # If you config `weixin_token_string`, so it will directly use it
+  # config.weixin_token_string = '<%= SecureRandom.hex(12) %>'
+  # using to weixin server url to validate the token can be trusted.
+  # config.weixin_secret_string = '<%= WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) %>'
+
+  ## Router configure ##
+  # Default is "/", and recommend you use default directly.
+  # config.engine_path = "/"
+
+  ```
+
+  2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
+
+  Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return public_account instance if you setup "public_account", otherwise return nil)`
+
+  3, Route
+
+  Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
+
+  * If you save your public_account into database, you should do follow step:
+
+  Run `rails generate weixin_rails_middleware:migration save_public_account_model_name`
+
+  e.g.: `rails generate weixin_rails_middleware:migration public_acount`
+
+  Will generate:
+
+  ```ruby
+  class AddWeixinSecretKeyAndWeixinTokenToPublicAccounts < ActiveRecord::Migration
+    def self.up
+      change_table(:public_accounts) do |t|
+        t.string :weixin_secret_key, :null => false
+        t.string :weixin_token,      :null => false
+      end
+      add_index :public_accounts, :weixin_secret_key, :unique => true
+      add_index :public_accounts, :weixin_token,      :unique => true
+    end
+
+    def self.down
+      # By default, we don't want to make any assumption about how to roll back a migration when your
+      # model already existed. Please edit below which fields you would like to remove in this migration.
+      raise ActiveRecord::IrreversibleMigration
+    end
+  end
+  ```
+
+  So, run `rake db:migrate` again. The `weixin_secret_key` value will auto generate before create. you don't have to operate it.
 
 ## Functions
 
@@ -39,7 +121,7 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
 
   * 地理位置回复: 自定义需求。
 
-  * 其他需要access_token的API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
+  * 其他高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
     * 获取用户管理信息
     * 分组管理接口
     * 自定义菜单
@@ -147,85 +229,6 @@ Rails 3 Example: https://github.com/lanrion/weixin_rails_3
     end
 
     ```
-
-## Install
-
-### Bundle
-
-  Add `weixin_rails_middleware` into your `Gemfile`:
-
-  `gem 'weixin_rails_middleware'` will install the last version
-
-  If you want to use `master`:
-
-  `gem 'weixin_rails_middleware', git: "https://github.com/lanrion/weixin_rails_middleware.git"`
-
-  And `bundle intall`
-
-### Init weixin_rails_middleware
-
-  * Run `rails generate weixin_rails_middleware:install`
-
-  1, It will create `config/initializers/weixin_rails_middleware.rb`
-
-  ```ruby
-  ## NOTE:
-  ## If you config all them, it will use `weixin_token_string` default
-
-  ## Config public_account_class if you SAVE public_account into database ##
-  # Th first configure is fit for your weixin public_account is saved in database.
-  # +public_account_class+ The class name that to save your public_account
-  # config.public_account_class = ""
-
-  ## Here configure is for you DON'T WANT TO SAVE your public account into database ##
-  # Or the other configure is fit for only one weixin public_account
-  # If you config `weixin_token_string`, so it will directly use it
-  # config.weixin_token_string = '<%= SecureRandom.hex(12) %>'
-  # using to weixin server url to validate the token can be trusted.
-  # config.weixin_secret_string = '<%= WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) %>'
-
-  ## Router configure ##
-  # Default is "/", and recommend you use default directly.
-  # config.engine_path = "/"
-
-  ```
-
-  2, Auto create `app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb`
-
-  Note: You need to overwrite the `reply` method. And there are two instance you can use: `@weixin_message`, `@weixin_public_account(return public_account instance if you setup "public_account", otherwise return nil)`
-
-  3, Route
-
-  Add a line: `WeixinRailsMiddleware::Engine, at: WeixinRailsMiddleware.config.engine_path` in `routes.rb`
-
-  * If you save your public_account into database, you should do follow step:
-
-  Run `rails generate weixin_rails_middleware:migration save_public_account_model_name`
-
-  e.g.: `rails generate weixin_rails_middleware:migration public_acount`
-
-  Will generate:
-
-  ```ruby
-  class AddWeixinSecretKeyAndWeixinTokenToPublicAccounts < ActiveRecord::Migration
-    def self.up
-      change_table(:public_accounts) do |t|
-        t.string :weixin_secret_key, :null => false
-        t.string :weixin_token,      :null => false
-      end
-      add_index :public_accounts, :weixin_secret_key, :unique => true
-      add_index :public_accounts, :weixin_token,      :unique => true
-    end
-
-    def self.down
-      # By default, we don't want to make any assumption about how to roll back a migration when your
-      # model already existed. Please edit below which fields you would like to remove in this migration.
-      raise ActiveRecord::IrreversibleMigration
-    end
-  end
-  ```
-
-  So, run `rake db:migrate` again. The `weixin_secret_key` value will auto generate before create. you don't have to operate it.
 
 ## Helpers
 
