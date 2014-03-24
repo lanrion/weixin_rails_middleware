@@ -18,20 +18,12 @@ module WeixinRailsMiddleware
     # use 'public_account_class': if the token is saved in SomeModel, then find token by it
     # use 'weixin_token': if the token is a String, just use it,
     attr_accessor :public_account_class, :weixin_token_string, :weixin_secret_string
-    attr_accessor :engine_path
-
-    def initialize
-      @engine_path = DEFAULT_ENGINE_PATH
-    end
 
   end
 
   module ConfigurationHelpers
     extend ActiveSupport::Concern
 
-    def engine_path
-      @engine_path ||= WeixinRailsMiddleware.config.engine_path
-    end
 
     def weixin_token_string
       @weixin_token_string ||= WeixinRailsMiddleware.config.weixin_token_string.to_s
@@ -43,10 +35,6 @@ module WeixinRailsMiddleware
 
     def weixin_secret_string
       @weixin_secret_string ||= WeixinRailsMiddleware.config.weixin_secret_string.to_s
-    end
-
-    def is_default_engine_path?
-      engine_path == DEFAULT_ENGINE_PATH # "/"
     end
 
     def token_model_class

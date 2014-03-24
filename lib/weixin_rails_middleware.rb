@@ -9,7 +9,6 @@ require "weixin_rails_middleware/helpers/weixin_authorize_helper"
 module WeixinRailsMiddleware
 
   DEFAULT_TOKEN_COLUMN_NAME = "weixin_token".freeze
-  DEFAULT_ENGINE_PATH       = "/".freeze
   DEFAULT_WEIXIN_SECRET_KEY = "weixin_secret_key".freeze
 
 end
