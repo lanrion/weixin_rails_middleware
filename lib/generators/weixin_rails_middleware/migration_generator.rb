@@ -7,7 +7,7 @@ module WeixinRailsMiddleware
 
       desc 'Adds a Wexin Secret Key for your application.'
       def create_migration_file
-        if !migration_exists?
+        if !migration_exists?(table_name)
           migration_template "add_weixin_secret_key_and_weixin_token_migration.rb", "db/migrate/add_weixin_secret_key_and_weixin_token_to_#{plural_name}.rb"
         end
       end
@@ -43,7 +43,7 @@ CONTENT
       end
 
       def migration_exists?(table_name)
-        Dir.glob("#{File.join(destination_root, migration_path)}/[0-9]*_*.rb").grep(/\d+_add_devise_to_#{table_name}.rb$/).first
+        Dir.glob("#{File.join(destination_root, migration_path)}/[0-9]*_*.rb").grep(/\d+_add_weixin_secret_key_and_weixin_token_to_#{table_name}.rb/).first
       end
 
       def migration_path
