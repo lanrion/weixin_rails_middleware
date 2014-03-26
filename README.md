@@ -41,7 +41,7 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
 
   * 语音回复: `reply_voice_message(voice)`。
 
-  * 图片回复: `reply_imgage_message(image)`。
+  * 图片回复: `reply_image_message(image)`。
 
   * 地理位置回复: 自定义需求。
 

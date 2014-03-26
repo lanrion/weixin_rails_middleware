@@ -85,7 +85,7 @@ module WeixinRailsMiddleware
       image
     end
 
-    def reply_imgage_message(from=nil, to=nil, image)
+    def reply_image_message(from=nil, to=nil, image)
       message = ImageReplyMessage.new
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
