@@ -15,15 +15,13 @@ module WeixinRailsMiddleware
   end
 
   class Configuration
-    # use 'public_account_class': if the token is saved in SomeModel, then find token by it
-    # use 'weixin_token': if the token is a String, just use it,
-    attr_accessor :public_account_class, :weixin_token_string, :weixin_secret_string
+    attr_accessor :public_account_class, :weixin_token_string
+    attr_accessor :weixin_secret_string
 
   end
 
   module ConfigurationHelpers
     extend ActiveSupport::Concern
-
 
     def weixin_token_string
       @weixin_token_string ||= WeixinRailsMiddleware.config.weixin_token_string.to_s
