@@ -6,7 +6,13 @@ This project rocks and uses MIT-LICENSE.
 
 It has already supported to Rails 3, Rails 4
 
-[Wiki](https://github.com/lanrion/weixin_rails_middleware/wiki)
+[Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
+
+* [Getting Start](https://github.com/lanrion/weixin_rails_middleware/wiki/Getting-Start)
+
+* [实现自定义菜单](https://github.com/lanrion/weixin_rails_middleware/wiki/DIY-menu)
+
+* [生成微信信息使用方法](https://github.com/lanrion/weixin_rails_middleware/wiki/Generate-message-helpers)
 
 高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
 
