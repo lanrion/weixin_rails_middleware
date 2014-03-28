@@ -6,7 +6,7 @@ This project rocks and uses MIT-LICENSE.
 
 It has already supported to Rails 3, Rails 4
 
-[Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
+[See Details on Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
 
 * [Getting Start](https://github.com/lanrion/weixin_rails_middleware/wiki/Getting-Start)
 
