@@ -6,6 +6,8 @@ This project rocks and uses MIT-LICENSE.
 
 It has already supported to Rails 3, Rails 4
 
+高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
+
 [See Details on Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
 
 * [Getting Start](https://github.com/lanrion/weixin_rails_middleware/wiki/Getting-Start)
@@ -14,7 +16,6 @@ It has already supported to Rails 3, Rails 4
 
 * [生成微信信息使用方法](https://github.com/lanrion/weixin_rails_middleware/wiki/Generate-message-helpers)
 
-高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
 
 https://rubygems.org/gems/weixin_rails_middleware
 
@@ -56,6 +57,8 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
     * 分组管理接口
     * 自定义菜单
     * 发送客服信息
+    * 生成带参数的二维码
+    * 上传下载多媒体文件
 
 ## How to Test
 
