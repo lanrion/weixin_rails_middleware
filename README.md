@@ -98,3 +98,7 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
 
 ## Recommended articles
   * [浅析微信信息信息接收与信息回复](https://gist.github.com/lanrion/9479631)
+
+## 参考致谢
+
+ [rack-weixin](https://github.com/wolfg1969/rack-weixin)
