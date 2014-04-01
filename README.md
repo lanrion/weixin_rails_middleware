@@ -4,11 +4,11 @@
 
 This project rocks and uses MIT-LICENSE.
 
-It has already supported to Rails 3, Rails 4
+最新版本已经支持 Rails 3, Rails 4
 
 高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
 
-[See Details on Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
+[查看 Wiki：](https://github.com/lanrion/weixin_rails_middleware/wiki)
 
 * [Getting Start](https://github.com/lanrion/weixin_rails_middleware/wiki/Getting-Start)
 
@@ -19,15 +19,15 @@ It has already supported to Rails 3, Rails 4
 
 https://rubygems.org/gems/weixin_rails_middleware
 
-## Example
+## 参考救命
 
 Rails 4: https://github.com/lanrion/weixin_rails_middleware_example
 
 Rails 3: https://github.com/lanrion/weixin_rails_3
 
-> If you want to develop weixin mobile app, I recommend [twitter_ratchet_rails](https://github.com/lanrion/twitter_ratchet_rails).
+> 如果你是开发手机wap，推荐使用 [twitter_ratchet_rails](https://github.com/lanrion/twitter_ratchet_rails).
 
-## Functions
+## 实现功能
 
   * 自动验证微信请求。
 
@@ -60,11 +60,11 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
     * 生成带参数的二维码
     * 上传下载多媒体文件
 
-## How to Test
+## 如何测试？
 
-  Install [ngrok](https://ngrok.com) and run with `ngrok 4000`, `4000` is your port that Rails Server needed
+  安装 [ngrok](https://ngrok.com)，解压后跑 `ngrok 4000`
 
-  Then, it will auto generate like this:
+  然后会产生以下信息：
 
   ```
   Tunnel Status                 online
@@ -77,12 +77,10 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
 
   ```
 
-  Yes, She is `http://e0ede89.ngrok.com`.
+ 域名为 `http://e0ede89.ngrok.com`。 注意非付费版本域名每次会随机生成，不是固定的。
 
-## How to upgrade.
-  Pending
 
-## Contributing
+## 贡献你的代码
 
   1. Fork it
   2. Create your feature branch (`git checkout -b my-new-feature`).
@@ -91,14 +89,15 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
   5. Create new Pull Request.
   6. Test with [weixin_rails_middleware_example](https://github.com/lanrion/weixin_rails_middleware_example), and push your changes.
 
-## Bugs and Feedback
-  If you discover any bugs, please describe it in the issues tracker, including Rails and weixin_rails_middleware versions.
+## Bugs 和反馈
 
-  Or contact me <huatiaodeng@gmail.com>, <huaitao-deng@foxmail.com>, or in [Ruby China](http://ruby-china.org/) [ruby_sky](http://ruby-china.org/ruby_sky)
+ 如果你发现有出现任何的bug，请在 https://github.com/lanrion/weixin_rails_middleware/issues 记录你的bug详细信息，
 
-## Recommended articles
+ 或者直接联系我 <huatiaodeng@gmail.com>, <huaitao-deng@foxmail.com>,  [Ruby China](http://ruby-china.org/) [ruby_sky](http://ruby-china.org/ruby_sky)
+
+## 推荐阅读
+
   * [浅析微信信息信息接收与信息回复](https://gist.github.com/lanrion/9479631)
 
 ## 参考致谢
-
- [rack-weixin](https://github.com/wolfg1969/rack-weixin)
+  在微信回复信息XML的封装方法，借鉴了 [rack-weixin](https://github.com/wolfg1969/rack-weixin) 实现，特此感谢！
