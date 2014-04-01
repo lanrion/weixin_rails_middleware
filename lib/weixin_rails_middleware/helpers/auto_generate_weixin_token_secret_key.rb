@@ -14,7 +14,7 @@ module WeixinRailsMiddleware
     private
 
     def generate_weixin_secret_key
-      WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 32)
+      WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 32).downcase
     end
   end
 end
