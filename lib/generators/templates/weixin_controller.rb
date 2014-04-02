@@ -78,7 +78,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # <Format><![CDATA[Format]]></Format>
     def response_voice_message(options={})
       @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
-      @format   = @weixin_message.format
+      @format   = @weixin_message.Format
       reply_text_message("回复语音信息: #{@keyword}")
     end
 

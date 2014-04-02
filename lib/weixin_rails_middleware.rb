@@ -4,7 +4,7 @@ require "weixin_rails_middleware/models/message"
 require "weixin_rails_middleware/models/reply_message"
 require "weixin_rails_middleware/helpers/reply_weixin_message_helper"
 require "weixin_rails_middleware/helpers/unique_token_helper"
-require "weixin_rails_middleware/helpers/weixin_authorize_helper"
+require "weixin_rails_middleware/adapter"
 require "weixin_rails_middleware/helpers/auto_generate_weixin_token_secret_key"
 
 module WeixinRailsMiddleware
