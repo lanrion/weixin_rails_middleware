@@ -15,9 +15,8 @@ module WeixinRailsMiddleware
   end
 
   class Configuration
-    attr_accessor :public_account_class, :weixin_token_string
-    attr_accessor :weixin_secret_string
-
+    attr_accessor :public_account_class
+    attr_accessor :weixin_secret_string, :weixin_token_string
   end
 
   module ConfigurationHelpers

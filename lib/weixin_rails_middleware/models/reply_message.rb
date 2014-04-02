@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: utf-8
 # ref: https://github.com/wolfg1969/rack-weixin/lib/weixin/model.rb
 require 'roxml'
 
@@ -7,7 +7,6 @@ module WeixinRailsMiddleware
   class ReplyMessage
     include ROXML
     xml_name :xml
-    #xml_convention :camelcase
 
     xml_accessor :ToUserName, :cdata   => true
     xml_accessor :FromUserName, :cdata => true

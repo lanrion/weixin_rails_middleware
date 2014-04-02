@@ -52,7 +52,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when "subscribe"   # 关注公众账号
         if @keyword.present?
           # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
-          reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
+          return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
         end
         reply_text_message("关注公众账号")
       when "unsubscribe" # 取消关注
