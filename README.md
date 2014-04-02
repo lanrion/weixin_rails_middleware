@@ -44,7 +44,7 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
 
   * 图文回复: `reply_news_message(articles)`, `generate_article(title, desc, pic_url, link_url)`。
 
-  * 视频回复: `replay_video_message(video)`。
+  * 视频回复: `reply_video_message(video)`。
 
   * 语音回复: `reply_voice_message(voice)`。
 
