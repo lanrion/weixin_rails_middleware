@@ -51,13 +51,25 @@ module WeixinRailsMiddleware
 
     def generate_video(media_id, desc, title)
       video = Video.new
-      video.MediaId     = media_id
+      video.MediaId = media_id
+      video.Title   = title
       video.Description = desc
-      video.Title = title
-      vodeo
+      video
     end
 
-    def replay_video_message(from=nil, to=nil, video)
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[fromUser]]></FromUserName>
+    # <CreateTime>12345678</CreateTime>
+    # <MsgType><![CDATA[video]]></MsgType>
+    # <Video>
+    # <MediaId><![CDATA[media_id]]></MediaId>
+    # <Title><![CDATA[title]]></Title>
+    # <Description><![CDATA[description]]></Description>
+    # </Video>
+    # </xml>
+
+    def reply_video_message(from=nil, to=nil, video)
       message = VideoReplyMessage.new
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
