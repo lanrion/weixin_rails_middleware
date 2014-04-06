@@ -6,10 +6,6 @@ This project rocks and uses MIT-LICENSE.
 
 https://rubygems.org/gems/weixin_rails_middleware
 
-**目前已知有多家公司在使用(由于未征得对方同意，不方便公开透露)，其中与第三方开发者一直有保持联系，保持反馈，如果你觉得需要我的私人辅助与建议，可以直接联系我，免费帮贵公司协助开发微信相关的项目。**
-
-另外此gem与[weixin_authorize](https://github.com/lanrion/weixin_authorize)并没有在Ruby 社区宣传过，只在一些非Ruby社区发个宣传帖，因此star数与使用者（微信开发者在项目中使用此gem与[weixin_authorize](https://github.com/lanrion/weixin_authorize)）有相当高的真实性。
-
 ## 使用特别说明
 
 ### 支持Rails版本
