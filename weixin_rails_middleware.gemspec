@@ -22,5 +22,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_xml', '>= 0.5.2'
   s.add_dependency 'roxml'
 
-gem
 end
