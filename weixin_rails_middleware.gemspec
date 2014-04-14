@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '>= 1.6.1'
   s.add_runtime_dependency 'rails', '>= 3.1'
 
-  s.add_dependency 'multi_json', '>= 1.9.0'
   s.add_dependency 'multi_xml', '>= 0.5.2'
   s.add_dependency 'roxml'
 
+gem
 end
