@@ -1,3 +1,0 @@
-require "weixin_rails_middleware/adapter/weixin_adapter"
-require "weixin_rails_middleware/adapter/multiple_public_account"
-require "weixin_rails_middleware/adapter/single_public_account"
