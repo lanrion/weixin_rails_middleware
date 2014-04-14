@@ -16,7 +16,7 @@ module WeixinRailsMiddleware
     protected
 
       def initialize_adapter
-        @weixin_adapter ||= Adapter::WexinAdapter.init_with(params)
+        @weixin_adapter ||= WexinAdapter.init_with(params)
       end
 
       def check_weixin_legality

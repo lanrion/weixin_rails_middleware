@@ -81,7 +81,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
       # 取消关注
       def reply_unsubscribe_event
-        reply_text_message("取消关注")
+        Rails.logger.info("取消关注")
       end
 
       # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
@@ -103,7 +103,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
       # 点击菜单跳转链接时的事件推送
       def reply_view_event
-        reply_text_message("你点击了: #{@keyword}")
+        Rails.logger.info("你点击了: #{@keyword}")
       end
 
 end
