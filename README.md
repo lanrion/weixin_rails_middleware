@@ -99,7 +99,7 @@ Rails 3: https://github.com/lanrion/weixin_rails_3
 
  如果你发现有出现任何的bug，请在 https://github.com/lanrion/weixin_rails_middleware/issues 记录你的bug详细信息，
 
- 或者直接联系我 <huatiaodeng@gmail.com>, <huaitao-deng@foxmail.com>,  [Ruby China](http://ruby-china.org/) [ruby_sky](http://ruby-china.org/ruby_sky)
+ 或者在 [Ruby China](http://ruby-china.org/) 开帖 [@ruby_sky](http://ruby-china.org/ruby_sky), 个人邮箱回复速度相对慢.
 
 ## 推荐阅读
 
