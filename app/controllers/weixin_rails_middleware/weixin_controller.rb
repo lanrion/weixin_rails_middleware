@@ -5,6 +5,7 @@ module WeixinRailsMiddleware
     skip_before_filter :verify_authenticity_token
     before_filter :initialize_adapter, :check_weixin_legality, only: [:index, :reply]
     before_filter :set_weixin_public_account, :set_weixin_message, only: :reply
+    before_filter :set_keyword, only: :reply
 
     def index
     end
@@ -34,6 +35,17 @@ module WeixinRailsMiddleware
       def set_weixin_message
         # Get the current weixin message
         @weixin_message ||= Message.factory(request.body.read)
+      end
+
+      def set_keyword
+        @keyword = @weixin_message.Content    || # 文本消息
+                   @weixin_message.EventKey   || # 事件推送
+                   @weixin_message.Recognition # 接收语音识别结果
+      end
+
+      # http://apidock.com/rails/ActionController/Base/default_url_options
+      def default_url_options(options={})
+        { weichat_id: @weixin_message.FromUserName }
       end
 
   end
