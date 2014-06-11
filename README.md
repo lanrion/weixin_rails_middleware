@@ -33,6 +33,12 @@ Rails 4: https://github.com/lanrion/weixin_rails_middleware_example
 
 Rails 3: https://github.com/lanrion/weixin_rails_3
 
+## 使用公司列表
+
+如果您或者您的公司正在使用当中，欢迎加入此列表：
+
+https://github.com/lanrion/weixin_rails_middleware/wiki/gem-users-list
+
 ## 实现功能
 
   * 自动验证微信请求。
