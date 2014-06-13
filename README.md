@@ -10,7 +10,13 @@ https://rubygems.org/gems/weixin_rails_middleware
 
 ### 支持Rails版本
 
-最新版本已经支持 Rails 3, Rails 4
+已经支持 Rails 3, Rails 4
+
+## 参考示例
+
+Rails 4: https://github.com/lanrion/weixin_rails_middleware_example
+
+Rails 3: https://github.com/lanrion/weixin_rails_3
 
 ### 相关gem推荐使用
 
@@ -25,13 +31,6 @@ https://rubygems.org/gems/weixin_rails_middleware
 * [实现自定义菜单](https://github.com/lanrion/weixin_rails_middleware/wiki/DIY-menu)
 
 * [生成微信信息使用方法](https://github.com/lanrion/weixin_rails_middleware/wiki/Generate-message-helpers)
-
-
-## 参考示例
-
-Rails 4: https://github.com/lanrion/weixin_rails_middleware_example
-
-Rails 3: https://github.com/lanrion/weixin_rails_3
 
 ## 使用公司列表
 
