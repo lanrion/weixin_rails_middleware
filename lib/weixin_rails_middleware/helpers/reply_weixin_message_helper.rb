@@ -105,5 +105,11 @@ module WeixinRailsMiddleware
       message.to_xml
     end
 
+    def transfer_customer_service_message(from=nil, to=nil)
+      message = TransferCustomerServiceReplyMessage.new
+      message.FromUserName = from || @weixin_message.ToUserName
+      message.ToUserName   = to   || @weixin_message.FromUserName
+      message.to_xml
+    end
   end
 end

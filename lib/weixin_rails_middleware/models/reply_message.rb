@@ -179,4 +179,17 @@ module WeixinRailsMiddleware
     end
   end
 
+  # <xml>
+  # <ToUserName><![CDATA[touser]]></ToUserName>
+  # <FromUserName><![CDATA[fromuser]]></FromUserName>
+  # <CreateTime>1399197672</CreateTime>
+  # <MsgType><![CDATA[transfer_customer_service]]></MsgType>
+  # </xml>
+  class TransferCustomerServiceReplyMessage < ReplyMessage
+    def initialize
+      super
+      @MsgType = 'transfer_customer_service'
+    end
+  end
+
 end
