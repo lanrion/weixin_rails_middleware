@@ -16,4 +16,7 @@ WeixinRailsMiddleware.configure do |config|
   # using to weixin server url to validate the token can be trusted.
   # config.weixin_secret_string = '<%= WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) %>'
 
+  ## You can custom your adapter to validate your weixin account ##
+  # config.custom_adapter = "MyCustomAdapter"
+
 end

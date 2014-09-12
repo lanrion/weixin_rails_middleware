@@ -18,6 +18,12 @@ module WeixinRailsMiddleware
     end
 
     def self.init_with(weixin_params)
+      if custom_adapter.present?
+        if custom_adapter.superclass != self
+          raise "#{custcurrent_weixin_tokenom_adapter.to_s} must inherite WexinAdapter"
+        end
+        return custom_adapter.new(weixin_params)
+      end
       if weixin_token_string.present?
         SinglePublicAccount.new(weixin_params)
       else
