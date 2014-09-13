@@ -17,6 +17,7 @@ module WeixinRailsMiddleware
   class Configuration
     attr_accessor :public_account_class
     attr_accessor :weixin_secret_string, :weixin_token_string
+    attr_accessor :custom_adapter
   end
 
   module ConfigurationHelpers
@@ -38,7 +39,11 @@ module WeixinRailsMiddleware
       if token_model.blank?
         raise "You need to config `public_account_class` in 'config/initializers/weixin_rails_middleware.rb'"
       end
-      @token_model_class_name ||= token_model.constantize
+      @token_model_class_name ||= token_model.to_s.constantize
+    end
+
+    def custom_adapter
+      @custom_adapter ||= WeixinRailsMiddleware.config.custom_adapter.to_s.constantize
     end
   end
 end
