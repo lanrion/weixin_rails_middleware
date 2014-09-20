@@ -9,7 +9,7 @@ module WeixinRailsMiddleware
     def initialize(weixin_params)
       @weixin_secret_key = weixin_params[:weixin_secret_key]
       # 以下参数为什么加空字符串默认值的原因:
-      # SB微信偶尔会再重新发一次get请求，但是不会带上signature,timestamp,nonce的参数
+      # 微信偶尔会再重新发一次get请求，但是不会带上signature,timestamp,nonce的参数
       # 一个预防措施吧。
       @signature = weixin_params[:signature] || ''
       @timestamp = weixin_params[:timestamp] || ''
@@ -19,10 +19,10 @@ module WeixinRailsMiddleware
 
     def self.init_with(weixin_params)
       if custom_adapter.present?
-        if custom_adapter.superclass != self
-          raise "#{custcurrent_weixin_tokenom_adapter.to_s} must inherite WexinAdapter"
+        if custom_adapter.constantize.superclass != self
+          raise "#{custom_adapter.to_s} must inherite WexinAdapter"
         end
-        return custom_adapter.new(weixin_params)
+        return custom_adapter.constantize.new(weixin_params)
       end
       if weixin_token_string.present?
         SinglePublicAccount.new(weixin_params)

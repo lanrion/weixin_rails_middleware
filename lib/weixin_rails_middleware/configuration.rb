@@ -43,7 +43,7 @@ module WeixinRailsMiddleware
     end
 
     def custom_adapter
-      @custom_adapter ||= WeixinRailsMiddleware.config.custom_adapter.to_s.constantize
+      @custom_adapter ||= WeixinRailsMiddleware.config.custom_adapter.to_s
     end
   end
 end
