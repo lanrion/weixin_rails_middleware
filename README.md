@@ -6,6 +6,8 @@ This project rocks and uses MIT-LICENSE.
 
 https://rubygems.org/gems/weixin_rails_middleware
 
+**微信企业版本已经完成，需要的请邮件联系我**
+
 ## 使用特别说明
 
 ### 支持Rails版本
