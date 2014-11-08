@@ -32,7 +32,7 @@ module WeixinRailsMiddleware
     end
 
     def check_weixin_legality
-      return render_authorize_result(403, self.class.error_msg) if !is_signature_valid?
+      return render_authorize_result(401, self.class.error_msg) if !is_signature_valid?
       render_authorize_result(200, echostr, true)
     end
 
@@ -64,7 +64,7 @@ module WeixinRailsMiddleware
     private
 
       # render weixin server authorize results
-      def render_authorize_result(status=403, text=nil, valid=false)
+      def render_authorize_result(status=401, text=nil, valid=false)
         text = text || error_msg
         Rails.logger.error(text) if status != 200
         {text: text, status: status, valid: valid}
