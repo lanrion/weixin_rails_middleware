@@ -1,3 +1,7 @@
+require 'roxml'
+require 'multi_xml'
+require 'ostruct'
+
 require "weixin_rails_middleware/configuration"
 require "weixin_rails_middleware/engine"
 
