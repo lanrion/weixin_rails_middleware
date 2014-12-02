@@ -3,7 +3,6 @@ class AddEncryptMessageConfigColumnsTo<%= table_name.camelize %> < ActiveRecord:
     change_table(:<%= table_name %>) do |t|
       t.string :encoding_aes_key, limit: 43
       t.string :app_id
-      t.boolean :is_encrypt, default: false
     end
   end
 

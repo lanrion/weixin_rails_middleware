@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Use this hook to configure WeixinRailsMiddleware bahaviors.
 WeixinRailsMiddleware.configure do |config|
 
@@ -15,6 +16,9 @@ WeixinRailsMiddleware.configure do |config|
   # config.weixin_token_string = '<%= SecureRandom.hex(12) %>'
   # using to weixin server url to validate the token can be trusted.
   # config.weixin_secret_string = '<%= WeiXinUniqueToken.generate(generator: :urlsafe_base64, size: 24) %>'
+  # 加密配置，如果需要加密，配置以下参数
+  # config.encoding_aes_key = '<%= WeiXinUniqueToken.generate(generator: :hex, size: 22)[1..43] %>'
+  # config.app_id = "your app id"
 
   ## You can custom your adapter to validate your weixin account ##
   # Wiki https://github.com/lanrion/weixin_rails_middleware/wiki/Custom-Adapter

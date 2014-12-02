@@ -16,7 +16,16 @@ module WeixinRailsMiddleware
     end
 
     def current_weixin_public_account
-      nil
+      @current_weixin_public_account ||= OpenStruct.new(
+                      weixin_secret_string: self.class.weixin_secret_string,
+                      weixin_token_string: self.class.weixin_token_string,
+                      app_id: self.class.app_id)
+      @current_weixin_public_account.instance_eval do
+        def aes_key
+          WexinAdapter.decode64(WexinAdapter.encoding_aes_key)
+        end
+      end
+      @current_weixin_public_account
     end
 
     def error_msg

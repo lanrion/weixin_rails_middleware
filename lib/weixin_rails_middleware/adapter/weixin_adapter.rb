@@ -10,7 +10,6 @@ module WeixinRailsMiddleware
       @weixin_secret_key = weixin_params[:weixin_secret_key]
       # 以下参数为什么加空字符串默认值的原因:
       # 微信偶尔会再重新发一次get请求，但是不会带上signature,timestamp,nonce的参数
-      # 一个预防措施吧。
       @signature = weixin_params[:signature] || ''
       @timestamp = weixin_params[:timestamp] || ''
       @nonce     = weixin_params[:nonce]     || ''
@@ -59,6 +58,10 @@ module WeixinRailsMiddleware
       def error_msg
         "#{__FILE__}:#{__LINE__}: Weixin signature NotMatch"
       end
+
+      def decode64(encoding_aes)
+        Base64.decode64("#{encoding_aes}=")
+      end
     end
 
     private
@@ -73,6 +76,5 @@ module WeixinRailsMiddleware
       def error_msg
         self.class.error_msg
       end
-
   end
 end

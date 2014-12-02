@@ -17,22 +17,24 @@ module WeixinRailsMiddleware
   class Configuration
     attr_accessor :public_account_class
     attr_accessor :weixin_secret_string, :weixin_token_string
+    # 加密参数配置
+    attr_accessor :encoding_aes_key, :app_id
+
+    # 自定义场景
     attr_accessor :custom_adapter
   end
 
   module ConfigurationHelpers
     extend ActiveSupport::Concern
 
-    def weixin_token_string
-      @weixin_token_string ||= WeixinRailsMiddleware.config.weixin_token_string.to_s
+    [:weixin_secret_string, :weixin_token_string, :encoding_aes_key, :app_id].each do |attr_name|
+      define_method attr_name do
+        WeixinRailsMiddleware.config.send(attr_name).to_s
+      end
     end
 
     def token_model
       @public_account_class ||= WeixinRailsMiddleware.config.public_account_class
-    end
-
-    def weixin_secret_string
-      @weixin_secret_string ||= WeixinRailsMiddleware.config.weixin_secret_string.to_s
     end
 
     def token_model_class

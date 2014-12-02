@@ -40,7 +40,7 @@ module WeixinRailsMiddleware
       when 'video'
         VideoMessage.new(hash)
       else
-        raise ArgumentError, 'Unknown Message'
+        raise ArgumentError, 'Unknown Weixin Message'
       end
     end
 

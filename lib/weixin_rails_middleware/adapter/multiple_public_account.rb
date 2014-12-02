@@ -16,8 +16,15 @@ module WeixinRailsMiddleware
       current_weixin_public_account.try(DEFAULT_TOKEN_COLUMN_NAME)
     end
 
+    # TODO: handle Exception
     def current_weixin_public_account
-      self.class.token_model_class.where("#{DEFAULT_WEIXIN_SECRET_KEY}" => weixin_secret_key).first
+      @current_weixin_public_account ||= self.class.token_model_class.where("#{DEFAULT_WEIXIN_SECRET_KEY}" => weixin_secret_key).first
+      @current_weixin_public_account.instance_eval do
+        def aes_key
+          WexinAdapter.decode64(encoding_aes_key)
+        end
+      end
+      @current_weixin_public_account
     end
 
     def error_msg
