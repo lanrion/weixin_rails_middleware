@@ -6,7 +6,7 @@ This project rocks and uses MIT-LICENSE.
 
 https://rubygems.org/gems/weixin_rails_middleware
 
-**已经实现消息体签名及加解密，升级与使用，详见Wiki**
+**已经实现消息体签名及加解密，升级与使用，详见[Wiki 实现消息体签名及加解密](https://github.com/lanrion/weixin_rails_middleware/wiki/msg-encryption-decipher)**
 
 ## 微信企业版本
 
