@@ -6,7 +6,12 @@ This project rocks and uses MIT-LICENSE.
 
 https://rubygems.org/gems/weixin_rails_middleware
 
-**微信企业版本已经完成，需要的请邮件联系我**
+**已经实现消息体签名及加解密，升级与使用，详见Wiki**
+
+## 微信企业版本
+
+https://github.com/lanrion/qy_wechat
+https://github.com/lanrion/qy_wechat_api
 
 ## 使用特别说明
 
@@ -66,12 +71,6 @@ https://github.com/lanrion/weixin_rails_middleware/wiki/gem-users-list
   * 地理位置回复: 自定义需求。
 
   * 其他高级API实现：[weixin_authorize](https://github.com/lanrion/weixin_authorize)
-    * 获取用户管理信息
-    * 分组管理接口
-    * 自定义菜单
-    * 发送客服信息
-    * 生成带参数的二维码
-    * 上传下载多媒体文件
 
 ## 如何测试？
 

@@ -9,7 +9,7 @@ module WeixinRailsMiddleware
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Content      = content
-      message.to_xml
+      encrypt_message message.to_xml
     end
 
     def generate_music(title, desc, music_url, hq_music_url)
@@ -27,7 +27,7 @@ module WeixinRailsMiddleware
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Music        = music
-      message.to_xml
+      encrypt_message message.to_xml
     end
 
     def generate_article(title, desc, pic_url, link_url)
@@ -46,7 +46,7 @@ module WeixinRailsMiddleware
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Articles     = articles
       message.ArticleCount = articles.count
-      message.to_xml
+      encrypt_message message.to_xml
     end
 
     def generate_video(media_id, desc, title)
@@ -74,7 +74,7 @@ module WeixinRailsMiddleware
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Video = video
-      message.to_xml
+      encrypt_message message.to_xml
     end
 
     def generate_voice(media_id)
@@ -88,7 +88,7 @@ module WeixinRailsMiddleware
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Voice = voice
-      message.to_xml
+      encrypt_message message.to_xml
     end
 
     def generate_image(media_id)
@@ -102,15 +102,41 @@ module WeixinRailsMiddleware
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.Image = image
-      message.to_xml
+      encrypt_message message.to_xml
     end
-
 
     def reply_transfer_customer_service_message(from=nil, to=nil)
       message = TransferCustomerServiceReplyMessage.new
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
-      message.to_xml
+      encrypt_message message.to_xml
     end
+
+    private
+
+      def encrypt_message(msg_xml)
+        return msg_xml if !@is_encrypt
+        # 加密回复的XML
+        encrypt_xml = Prpcrypt.encrypt(@weixin_public_account.aes_key, msg_xml, @weixin_public_account.app_id).gsub("\n","")
+        # 标准的回包
+        generate_encrypt_message(encrypt_xml)
+      end
+
+      def generate_encrypt_message(encrypt_xml)
+        msg              = EncryptMessage.new
+        msg.Encrypt      = encrypt_xml
+        msg.TimeStamp    = Time.now.to_i.to_s
+        msg.Nonce        = SecureRandom.hex(8)
+        msg.MsgSignature = generate_msg_signature(encrypt_xml, msg)
+        msg.to_xml
+      end
+
+      # dev_msg_signature=sha1(sort(token、timestamp、nonce、msg_encrypt))
+      # 生成企业签名
+      def generate_msg_signature(encrypt_msg, msg)
+        sort_params = [encrypt_msg, @weixin_adapter.current_weixin_token,
+                       msg.TimeStamp, msg.Nonce].sort.join
+        Digest::SHA1.hexdigest(sort_params)
+      end
   end
 end

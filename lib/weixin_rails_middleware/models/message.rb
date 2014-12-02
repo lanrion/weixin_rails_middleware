@@ -1,9 +1,4 @@
 # encoding: utf-8
-# ref: https://github.com/wolfg1969/rack-weixin/lib/weixin/model.rb
-require 'roxml'
-require 'multi_xml'
-require 'ostruct'
-
 # multi_xml will use Nokogiri if it is available
 MultiXml.parser = :nokogiri
 
@@ -45,7 +40,7 @@ module WeixinRailsMiddleware
       when 'video'
         VideoMessage.new(hash)
       else
-        raise ArgumentError, 'Unknown Message'
+        raise ArgumentError, 'Unknown Weixin Message'
       end
     end
 
