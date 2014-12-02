@@ -11,6 +11,7 @@ https://rubygems.org/gems/weixin_rails_middleware
 ## 微信企业版本
 
 https://github.com/lanrion/qy_wechat
+
 https://github.com/lanrion/qy_wechat_api
 
 ## 使用特别说明
