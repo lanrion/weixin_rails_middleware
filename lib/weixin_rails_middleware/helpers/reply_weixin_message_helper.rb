@@ -105,12 +105,36 @@ module WeixinRailsMiddleware
       message.to_xml
     end
 
-
     def reply_transfer_customer_service_message(from=nil, to=nil)
       message = TransferCustomerServiceReplyMessage.new
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       message.to_xml
     end
+
+    private
+
+      def encrypt_message(msg_xml)
+        # 加密回复的XML
+        encrypt_xml = Prpcrypt.encrypt(aes_key, msg_xml, corp_id).gsub("\n","")
+        # 标准的回包
+        generate_encrypt_message(encrypt_xml)
+      end
+
+      def generate_encrypt_message(encrypt_xml)
+        msg = EncryptMessage.new
+        msg.Encrypt = encrypt_xml
+        msg.TimeStamp = Time.now.to_i.to_s
+        msg.Nonce = SecureRandom.hex(8)
+        msg.MsgSignature = generate_msg_signature(encrypt_xml, msg)
+        msg.to_xml
+      end
+
+      # dev_msg_signature=sha1(sort(token、timestamp、nonce、msg_encrypt))
+      # 生成企业签名
+      def generate_msg_signature(encrypt_msg, msg)
+        sort_params = [encrypt_msg, qy_token, msg.TimeStamp, msg.Nonce].sort.join
+        Digest::SHA1.hexdigest(sort_params)
+      end
   end
 end
