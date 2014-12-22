@@ -21,8 +21,8 @@ module WeixinRailsMiddleware
   autoload(:SinglePublicAccount, "weixin_rails_middleware/adapter/single_public_account")
   autoload(:MultiplePublicAccount, "weixin_rails_middleware/adapter/multiple_public_account")
 
-  DEFAULT_TOKEN_COLUMN_NAME = "weixin_token".freeze
-  DEFAULT_WEIXIN_SECRET_KEY = "weixin_secret_key".freeze
+  DEFAULT_TOKEN_COLUMN_NAME = "weixin_token"
+  DEFAULT_WEIXIN_SECRET_KEY = "weixin_secret_key"
 
 end
 
