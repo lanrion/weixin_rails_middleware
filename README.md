@@ -93,6 +93,14 @@ https://github.com/lanrion/weixin_rails_middleware/wiki/gem-users-list
  域名为 `http://e0ede89.ngrok.com`。 注意非付费版本域名每次会随机生成，不是固定的。
 
 
+**Ngrok已墙，你懂得的**，ngrok 已墙，请使用localtunnel.me，使用方法：
+
+`npm install -g localtunnel`
+```sh
+$ lt --port 8000
+# your url is: https://gqgh.localtunnel.me
+```
+
 ## 贡献你的代码
 
   1. Fork it
