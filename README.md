@@ -122,3 +122,9 @@ $ lt --port 8000
 
 ## 参考致谢
   在微信回复信息XML的封装方法，借鉴了 [rack-weixin](https://github.com/wolfg1969/rack-weixin) 实现，特此感谢！
+ 
+## 捐赠支持
+
+  如果你觉得我的gem对你有帮助，欢迎打赏支持，:smile:
+
+  ![](https://raw.githubusercontent.com/lanrion/my_config/master/imagex/donation_me.png)
