@@ -30,6 +30,10 @@ module WeixinRailsMiddleware
         template 'weixin_controller.rb', 'app/decorators/controllers/weixin_rails_middleware/weixin_controller_decorator.rb'
       end
 
+      def show_readme
+        readme "README" if behavior == :invoke
+      end
+
     end
   end
 end
