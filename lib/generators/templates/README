@@ -1,7 +1,15 @@
 ===============================================================================
-如果有任何的疑问，请前往微信开发论坛提问：
+## 如果有任何的疑问，请前往微信开发论坛提问：
 
-http://weixin-dev.com
+  http://weixin-dev.com
 
-这里有全国最有实力的微信开发者
+## 微信 Ruby 高级API：
+
+  https://github.com/lanrion/weixin_authorize
+
+## 企业号相关gem：
+
+  https://github.com/lanrion/qy_wechat
+
+  https://github.com/lanrion/qy_wechat_api
 
