@@ -127,4 +127,17 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       Rails.logger.info("回调事件处理")
     end
 
+    # <xml>
+    # <ToUserName><![CDATA[gh_7f083739789a]]></ToUserName>
+    # <FromUserName><![CDATA[oia2TjuEGTNoeX76QEjQNrcURxG8]]></FromUserName>
+    # <CreateTime>1395658920</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[TEMPLATESENDJOBFINISH]]></Event>
+    # <MsgID>200163836</MsgID>
+    # <Status><![CDATA[success]]></Status>
+    # </xml>
+    # 推送模板信息回调，通知服务器是否成功推送
+    def handle_templatesendjobfinish_event
+    end
+
 end
