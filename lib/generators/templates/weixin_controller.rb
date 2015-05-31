@@ -138,6 +138,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # </xml>
     # 推送模板信息回调，通知服务器是否成功推送
     def handle_templatesendjobfinish_event
+      Rails.logger.info("回调事件处理")
     end
 
 end
