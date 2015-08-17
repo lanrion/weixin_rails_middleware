@@ -105,8 +105,22 @@ module WeixinRailsMiddleware
       encrypt_message message.to_xml
     end
 
-    def reply_transfer_customer_service_message(from=nil, to=nil)
-      message = TransferCustomerServiceReplyMessage.new
+    # 指定会话接入的客服账号
+    def generate_kf_trans_info(kf_account)
+      trans_info = KfTransInfo.new
+      trans_info.KfAccount = kf_account
+      trans_info
+    end
+
+    # 消息转发到多客服
+    # 消息转发到指定客服
+    def reply_transfer_customer_service_message(from=nil, to=nil, kf_account=nil)
+      if kf_account.blank?
+        message = TransferCustomerServiceReplyMessage.new
+      else
+        message = TransferCustomerServiceWithTransInfoReplyMessage.new
+        message.TransInfo = generate_kf_trans_info(kf_account)
+      end
       message.FromUserName = from || @weixin_message.ToUserName
       message.ToUserName   = to   || @weixin_message.FromUserName
       encrypt_message message.to_xml
