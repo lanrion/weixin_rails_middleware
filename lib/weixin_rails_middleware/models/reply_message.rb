@@ -192,4 +192,27 @@ module WeixinRailsMiddleware
     end
   end
 
+  # 指定会话接入的客服账号
+  class KfTransInfo
+    include ROXML
+    xml_accessor :KfAccount, :cdata => true
+  end
+
+  # <xml>
+  #  <ToUserName><![CDATA[touser]]></ToUserName>
+  #  <FromUserName><![CDATA[fromuser]]></FromUserName>
+  #  <CreateTime>1399197672</CreateTime>
+  #  <MsgType><![CDATA[transfer_customer_service]]></MsgType>
+  #  <TransInfo>
+  #   <KfAccount>test1@test</KfAccount>
+  #  </TransInfo>
+  # </xml>
+  class TransferCustomerServiceWithTransInfoReplyMessage < ReplyMessage
+    xml_accessor :TransInfo, :as => KfTransInfo
+    def initialize
+      super
+      @MsgType = 'transfer_customer_service'
+    end
+  end
+
 end
