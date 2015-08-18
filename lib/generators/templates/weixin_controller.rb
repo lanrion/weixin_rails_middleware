@@ -141,4 +141,95 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       Rails.logger.info("回调事件处理")
     end
 
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[card_pass_check]]></Event>  //不通过为card_not_pass_check
+    # <CardId><![CDATA[cardid]]></CardId>
+    # </xml>
+    # 卡券审核事件，通知服务器卡券已(未)通过审核
+    def handle_card_pass_check_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    def handle_card_not_pass_check_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <FriendUserName><![CDATA[FriendUser]]></FriendUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[user_get_card]]></Event>
+    # <CardId><![CDATA[cardid]]></CardId>
+    # <IsGiveByFriend>1</IsGiveByFriend>
+    # <UserCardCode><![CDATA[12312312]]></UserCardCode>
+    # <OuterId>0</OuterId>
+    # </xml>
+    # 卡券领取事件推送
+    def handle_user_get_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[user_del_card]]></Event>
+    # <CardId><![CDATA[cardid]]></CardId>
+    # <UserCardCode><![CDATA[12312312]]></UserCardCode>
+    # </xml>
+    # 卡券删除事件推送
+    def handle_user_del_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[user_consume_card]]></Event>
+    # <CardId><![CDATA[cardid]]></CardId>
+    # <UserCardCode><![CDATA[12312312]]></UserCardCode>
+    # <ConsumeSource><![CDATA[(FROM_API)]]></ConsumeSource>
+    # </xml>
+    # 卡券核销事件推送
+    def handle_user_consume_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[user_view_card]]></Event>
+    # <CardId><![CDATA[cardid]]></CardId>
+    # <UserCardCode><![CDATA[12312312]]></UserCardCode>
+    # </xml>
+    # 卡券进入会员卡事件推送
+    def handle_user_view_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[FromUser]]></FromUserName>
+    # <CreateTime>123456789</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[user_enter_session_from_card]]></Event>
+    # <CardId><![CDATA[cardid]]></CardId>
+    # <UserCardCode><![CDATA[12312312]]></UserCardCode>
+    # </xml>
+    # 从卡券进入公众号会话事件推送
+    def handle_user_enter_session_from_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
 end
