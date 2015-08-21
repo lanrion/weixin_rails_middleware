@@ -65,7 +65,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
     def response_event_message(options={})
       event_type = @weixin_message.Event
-      send("handle_#{event_type.downcase}_event")
+      method_name = "handle_#{event_type.downcase}_event"
+      if self.respond_to? method_name, true
+        send(method_name)
+      else
+        send("handle_undefined_event")
+      end
     end
 
     # 关注公众账号
@@ -229,6 +234,27 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # </xml>
     # 从卡券进入公众号会话事件推送
     def handle_user_enter_session_from_card_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # <xml>
+    # <ToUserName><![CDATA[toUser]]></ToUserName>
+    # <FromUserName><![CDATA[fromUser]]></FromUserName>
+    # <CreateTime>1408622107</CreateTime>
+    # <MsgType><![CDATA[event]]></MsgType>
+    # <Event><![CDATA[poi_check_notify]]></Event>
+    # <UniqId><![CDATA[123adb]]></UniqId>
+    # <PoiId><![CDATA[123123]]></PoiId>
+    # <Result><![CDATA[fail]]></Result>
+    # <Msg><![CDATA[xxxxxx]]></Msg>
+    # </xml>
+    # 门店审核事件推送
+    def handle_poi_check_notify_event
+      Rails.logger.info("回调事件处理")
+    end
+
+    # 未定义的事件处理
+    def handle_undefined_event
       Rails.logger.info("回调事件处理")
     end
 
