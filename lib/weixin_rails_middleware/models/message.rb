@@ -33,6 +33,10 @@ module WeixinRailsMiddleware
         LocationMessage.new(hash)
       when 'link'
         LinkMessage.new(hash)
+      when 'scancode_waitmsg'
+        ScanMessage.new(hash)
+      when 'scancode_push'
+        ScanMessage.new(hash)
       when 'event'
         EventMessage.new(hash)
       when 'voice'
@@ -41,10 +45,6 @@ module WeixinRailsMiddleware
         VideoMessage.new(hash)
       when 'shortvideo'
         ShortVideo.new(hash)
-      when 'scancode_waitmsg'
-        ScanMessage.new(hash)
-      when 'scancode_push'
-        ScanMessage.new(hash)
       else
         raise ArgumentError, 'Unknown Weixin Message'
       end
