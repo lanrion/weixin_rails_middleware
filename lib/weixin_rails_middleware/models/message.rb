@@ -21,6 +21,10 @@ module WeixinRailsMiddleware
     def MsgId
       @source.MsgId.to_i
     end
+    
+    def mm
+      "呵呵"
+    end
 
     def self.factory(xml)
       hash = MultiXml.parse(xml)['xml']
@@ -33,10 +37,6 @@ module WeixinRailsMiddleware
         LocationMessage.new(hash)
       when 'link'
         LinkMessage.new(hash)
-      when 'event'
-        ScanMessage.new(hash)
-      when 'scancode_push'
-        ScanMessage.new(hash)
       when 'event'
         ScanMessage.new(hash)
        #   EventMessage.new(hash)
