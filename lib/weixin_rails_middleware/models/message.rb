@@ -33,12 +33,16 @@ module WeixinRailsMiddleware
         LocationMessage.new(hash)
       when 'link'
         LinkMessage.new(hash)
-      when 'scancode_waitmsg'
+      when 'event'
         ScanMessage.new(hash)
       when 'scancode_push'
         ScanMessage.new(hash)
       when 'event'
-        EventMessage.new(hash)
+        if hash['Event'] == 'scancode_waitmsg'
+          ScanMessage.new(hash)
+        else
+          EventMessage.new(hash)
+        end
       when 'voice'
         VoiceMessage.new(hash)
       when 'video'
