@@ -23,7 +23,7 @@ module WeixinRailsMiddleware
     end
     
     def mm
-      "呵呵"
+      @source
     end
 
     def self.factory(xml)
