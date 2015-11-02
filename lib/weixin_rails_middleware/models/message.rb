@@ -41,6 +41,10 @@ module WeixinRailsMiddleware
         VideoMessage.new(hash)
       when 'shortvideo'
         ShortVideo.new(hash)
+      when 'scancode_waitmsg'
+        ScanMessage.new(hash)
+      when 'scancode_push'
+        ScanMessage.new(hash)
       else
         raise ArgumentError, 'Unknown Weixin Message'
       end
@@ -177,5 +181,32 @@ module WeixinRailsMiddleware
       @source.ThumbMediaId
     end
   end
+  
+  #<xml><ToUserName><![CDATA[gh_e136c6e50636]]></ToUserName>
+  #<FromUserName><![CDATA[oMgHVjngRipVsoxg6TuX3vz6glDg]]></FromUserName>
+  #<CreateTime>1408090606</CreateTime>
+  #<MsgType><![CDATA[event]]></MsgType>
+  #<Event><![CDATA[scancode_waitmsg]]></Event>
+  #<EventKey><![CDATA[6]]></EventKey>
+  #<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+  #<ScanResult><![CDATA[2]]></ScanResult>
+  #</ScanCodeInfo>
+  #</xml>
+
+  class ScanMessage < Message
+
+    def ScanType
+      @source.ScanType
+    end
+
+    def ScanResult
+      @source.ScanResult
+    end
+
+    def ScanCodeInfo
+      @source.ScanType
+    end
+  end
+
 
 end
