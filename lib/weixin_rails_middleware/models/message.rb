@@ -21,14 +21,6 @@ module WeixinRailsMiddleware
     def MsgId
       @source.MsgId.to_i
     end
-    
-    def ScanResult
-      @source.ScanResult
-    end
-
-    def ScanCodeInfo
-      @source.ScanType
-    end
 
     def self.factory(xml)
       hash = MultiXml.parse(xml)['xml']
@@ -46,11 +38,8 @@ module WeixinRailsMiddleware
       when 'scancode_push'
         ScanMessage.new(hash)
       when 'event'
-        if hash['Event'] == 'scancode_waitmsg'
-          ScanMessage.new(hash)
-        else
-          EventMessage.new(hash)
-        end
+        ScanMessage.new(hash)
+       #   EventMessage.new(hash)
       when 'voice'
         VoiceMessage.new(hash)
       when 'video'
