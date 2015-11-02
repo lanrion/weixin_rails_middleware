@@ -22,7 +22,7 @@ module WeixinRailsMiddleware
       @source.MsgId.to_i
     end
     
-    def mm
+    def source
       @source
     end
 
@@ -38,8 +38,7 @@ module WeixinRailsMiddleware
       when 'link'
         LinkMessage.new(hash)
       when 'event'
-        ScanMessage.new(hash)
-       #   EventMessage.new(hash)
+        EventMessage.new(hash)
       when 'voice'
         VoiceMessage.new(hash)
       when 'video'
@@ -194,20 +193,6 @@ module WeixinRailsMiddleware
   #</ScanCodeInfo>
   #</xml>
 
-  class ScanMessage < Message
-
-    def ScanType
-      @source.ScanType
-    end
-
-    def ScanResult
-      @source.ScanResult
-    end
-
-    def ScanCodeInfo
-      @source.ScanType
-    end
-  end
 
 
 end
