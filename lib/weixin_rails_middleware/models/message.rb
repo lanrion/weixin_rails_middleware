@@ -21,6 +21,14 @@ module WeixinRailsMiddleware
     def MsgId
       @source.MsgId.to_i
     end
+    
+    def ScanResult
+      @source.ScanResult
+    end
+
+    def ScanCodeInfo
+      @source.ScanType
+    end
 
     def self.factory(xml)
       hash = MultiXml.parse(xml)['xml']
