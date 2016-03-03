@@ -2,7 +2,6 @@ module WeixinRailsMiddleware
   class WeixinController < ActionController::Base
     include ReplyWeixinMessageHelper
 
-    skip_before_filter :verify_authenticity_token
     before_filter :check_is_encrypt, only: [:index, :reply]
     before_filter :initialize_adapter, :check_weixin_legality, only: [:index, :reply]
     before_filter :set_weixin_public_account, :set_weixin_message, only: :reply
