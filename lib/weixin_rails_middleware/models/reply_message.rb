@@ -146,6 +146,7 @@ module WeixinRailsMiddleware
   class Voice
     include ROXML
     xml_accessor :MediaId, :cdata => true
+    xml_accessor :Recognition, :cdata => true
   end
 
   class VoiceReplyMessage < ReplyMessage
