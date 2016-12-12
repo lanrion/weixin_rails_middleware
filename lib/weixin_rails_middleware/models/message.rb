@@ -21,6 +21,10 @@ module WeixinRailsMiddleware
     def MsgId
       @source.MsgId.to_i
     end
+    
+    def source
+      @source
+    end
 
     def self.factory(xml)
       hash = MultiXml.parse(xml)['xml']
@@ -177,5 +181,18 @@ module WeixinRailsMiddleware
       @source.ThumbMediaId
     end
   end
+  
+  #<xml><ToUserName><![CDATA[gh_e136c6e50636]]></ToUserName>
+  #<FromUserName><![CDATA[oMgHVjngRipVsoxg6TuX3vz6glDg]]></FromUserName>
+  #<CreateTime>1408090606</CreateTime>
+  #<MsgType><![CDATA[event]]></MsgType>
+  #<Event><![CDATA[scancode_waitmsg]]></Event>
+  #<EventKey><![CDATA[6]]></EventKey>
+  #<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+  #<ScanResult><![CDATA[2]]></ScanResult>
+  #</ScanCodeInfo>
+  #</xml>
+
+
 
 end
