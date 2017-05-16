@@ -2,10 +2,10 @@ module WeixinRailsMiddleware
   class WeixinController < ActionController::Base
     include ReplyWeixinMessageHelper
 
-    before_filter :check_is_encrypt, only: [:index, :reply]
-    before_filter :initialize_adapter, :check_weixin_legality, only: [:index, :reply]
-    before_filter :set_weixin_public_account, :set_weixin_message, only: :reply
-    before_filter :set_keyword, only: :reply
+    before_action :check_is_encrypt, only: [:index, :reply]
+    before_action :initialize_adapter, :check_weixin_legality, only: [:index, :reply]
+    before_action :set_weixin_public_account, :set_weixin_message, only: :reply
+    before_action :set_keyword, only: :reply
 
     def index
     end
