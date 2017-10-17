@@ -6,7 +6,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   def reply
     result = send("response_#{@weixin_message.MsgType}_message", {})
-    render result.is_a?(String) ? {xml: result} : {nothing: true}
+    render result.is_a?(String) ? {xml: result} : {body: nil}
   end
 
   private
