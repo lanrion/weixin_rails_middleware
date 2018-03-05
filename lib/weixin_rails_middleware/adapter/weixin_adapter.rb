@@ -70,7 +70,11 @@ module WeixinRailsMiddleware
       def render_authorize_result(status=401, text=nil, valid=false)
         text = text || error_msg
         Rails.logger.error(text) if status != 200
-        {plain: text, status: status, valid: valid}
+        if Rails::VERSION::MAJOR >= 4
+          {plain: text, status: status, valid: valid}
+        else
+          {text: text, status: status, valid: valid}
+        end
       end
 
       def error_msg
