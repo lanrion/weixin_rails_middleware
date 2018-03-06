@@ -8,6 +8,11 @@ module WeixinRailsMiddleware
     before_action :set_keyword, only: :reply
 
     def index
+      if Rails::VERSION::MAJOR >= 4
+        render plain: params[:echostr]
+      else
+        render text: params[:echostr]
+      end
     end
 
     def reply
@@ -30,9 +35,8 @@ module WeixinRailsMiddleware
 
       def check_weixin_legality
         check_result = @weixin_adapter.check_weixin_legality
-        valid = check_result.delete(:valid)
-        render check_result if action_name == "index"
-        return valid
+        return if check_result.delete(:valid)
+        render check_result
       end
 
       ## Callback
