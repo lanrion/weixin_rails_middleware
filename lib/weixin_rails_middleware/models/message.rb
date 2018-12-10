@@ -17,6 +17,10 @@ module WeixinRailsMiddleware
     def CreateTime
       @source.CreateTime.to_i
     end
+    
+    def Event
+      @source.Event
+    end
 
     def MsgId
       @source.MsgId.to_i
@@ -34,7 +38,11 @@ module WeixinRailsMiddleware
       when 'link'
         LinkMessage.new(hash)
       when 'event'
-        EventMessage.new(hash)
+        if hash['Event'] == 'scancode_waitmsg'
+          ScancodeWaitmsgMessage.new(hash)
+        else
+          EventMessage.new(hash)
+        end
       when 'voice'
         VoiceMessage.new(hash)
       when 'video'
@@ -175,6 +183,31 @@ module WeixinRailsMiddleware
 
     def ThumbMediaId
       @source.ThumbMediaId
+    end
+  end
+  
+  #<xml><ToUserName><![CDATA[gh_e136c6e50636]]></ToUserName>
+  #<FromUserName><![CDATA[oMgHVjngRipVsoxg6TuX3vz6glDg]]></FromUserName>
+  #<CreateTime>1408090606</CreateTime>
+  #<MsgType><![CDATA[event]]></MsgType>
+  #<Event><![CDATA[scancode_waitmsg]]></Event>
+  #<EventKey><![CDATA[6]]></EventKey>
+  #<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+  #<ScanResult><![CDATA[2]]></ScanResult>
+  #</ScanCodeInfo>
+  #</xml>
+  class ScancodeWaitmsgMessage < Message
+
+    def EventKey
+      @source.EventKey
+    end
+
+    def ScanCodeInfo
+      @source.ScanCodeInfo
+    end
+
+    def ScanResult
+      @source.ScanCodeInfo['ScanResult']
     end
   end
 
