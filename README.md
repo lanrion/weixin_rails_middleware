@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/weixin_rails_middleware.png)](http://badge.fury.io/rb/weixin_rails_middleware)
 
-This project rocks and uses MIT-LICENSE.
+该项目使用MIT-LICENSE.
 
 https://rubygems.org/gems/weixin_rails_middleware
 
@@ -18,7 +18,7 @@ https://github.com/lanrion/qy_wechat_api
 
 ### 支持Rails版本
 
-已经支持 Rails 3, Rails 4
+已经支持 Rails 3,Rails 4,Rails 5,Rails 6
 
 ## 参考示例
 
@@ -103,12 +103,12 @@ $ lt --port 8000
 
 ## 贡献你的代码
 
-  1. Fork it
-  2. Create your feature branch (`git checkout -b my-new-feature`).
-  3. Commit your changes (`git commit -am 'Add some feature'`).
-  4. Push to the branch (`git push origin my-new-feature`).
-  5. Create new Pull Request.
-  6. Test with [weixin_rails_middleware_example](https://github.com/lanrion/weixin_rails_middleware_example), and push your changes.
+  1. Fork 项目
+  2. 创建自己的功能分支 (`git checkout -b my-new-feature`).
+  3. 提交你的修改 (`git commit -am 'Add some feature'`).
+  4. 推荐到远程分支 (`git push origin my-new-feature`).
+  5. 提交PR审核.
+  6. 可使用 [weixin_rails_middleware_example](https://github.com/lanrion/weixin_rails_middleware_example), 来测试
 
 ## Bugs 和反馈
 
